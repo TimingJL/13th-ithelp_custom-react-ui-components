@@ -25,8 +25,9 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "predeploy": "npm run build-storybook",
-    "deploy-storybook": "gh-pages -d storybook-static",
-    "build-storybook": "build-storybook -s public"
+    "deploy-storybook": "storybook-to-ghpages",
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token=72f541908a9a"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +64,7 @@
     "@storybook/node-logger": "^6.3.7",
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.3.7",
+    "chromatic": "^5.9.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.24.2",
