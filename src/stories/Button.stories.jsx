@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import Button from '../components/Button';
@@ -57,4 +56,15 @@ export const EndIconButton = Template.bind({});
 EndIconButton.args = {
   children: 'Button',
   endIcon: <CloudDownloadIcon />,
+};
+
+export const CustomizeButton = Template.bind({});
+
+CustomizeButton.args = {
+  children: 'Button',
+  endIcon: <CloudDownloadIcon />,
+  style: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 50,
+  },
 };
