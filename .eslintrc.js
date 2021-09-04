@@ -18,6 +18,8 @@ module.exports = {
     'react',
   ],
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.tsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx'] }],
+    'react/jsx-props-no-spreading': 'off',
+    'no-tabs': 0,
   },
 };
