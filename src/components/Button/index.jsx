@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { COLOR } from '../../theme';
 
 const containedStyle = css`
   background: ${(props) => props.$btnColor};
@@ -78,10 +79,7 @@ const StyledButton = styled.button`
 `;
 
 const makeBtnColor = (themeColor) => {
-  const themeColorMap = {
-    primary: '#1976d2',
-    secondary: '#dc004e',
-  };
+  const themeColorMap = COLOR;
   return themeColorMap[themeColor] || themeColor || themeColorMap.primary;
 };
 
