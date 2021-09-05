@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { COLOR } from '../../theme';
+import { makeColor } from '../../utils/color';
 
 const DISABLED_COLOR = '#dadada';
 
@@ -79,16 +79,6 @@ const StyledButton = styled.button`
   ${(props) => (props.$isDisabled ? disabledStyle : null)}
 `;
 
-const makeBtnColor = (themeColor) => {
-  /**
-   * Color codes regular expression
-   * https://regexr.com/39cgj
-   */
-  const colorRegex = new RegExp(/(?:#|0x)(?:[a-f0-9]{3}|[a-f0-9]{6})\b|(?:rgb|hsl)a?\([^)]*\)/);
-  const isValidColorCode = colorRegex.test(themeColor.toLocaleLowerCase());
-  return isValidColorCode ? themeColor : (COLOR[themeColor] || COLOR.primary);
-};
-
 /**
  * `Button` 元件代表一個可點擊的按鈕，在使用者點擊之後會觸發相對應的業務邏輯。
  */
@@ -104,7 +94,7 @@ const Button = ({
   onClick,
   ...props
 }) => {
-  const btnColor = isDisabled ? DISABLED_COLOR : makeBtnColor(themeColor);
+  const btnColor = isDisabled ? DISABLED_COLOR : makeColor(themeColor);
 
   return (
     <StyledButton
