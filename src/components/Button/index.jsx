@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { COLOR } from '../../theme';
 
+const DISABLED_COLOR = '#dadada';
+
 const containedStyle = css`
   background: ${(props) => props.$btnColor};
   color: #FFF;
@@ -55,17 +57,16 @@ const EndIcon = styled.span`
 
 const StyledButton = styled.button`
   border: none;
+  outline: none;
   min-width: 100px;
   height: 36px;
   display: flex;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   border-radius: 4px;
   cursor: pointer;
-  outline: none;
   transition: color 0.2s, background-color 0.2s, border 0.2s, opacity 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
 
   &:hover {
     opacity: 0.9;
@@ -74,13 +75,18 @@ const StyledButton = styled.button`
     opacity: 0.7;
   }
 
-  ${(props) => variantMap[props.$variant]}
+  ${(props) => variantMap[props.$variant] || variantMap.primary}
   ${(props) => (props.$isDisabled ? disabledStyle : null)}
 `;
 
 const makeBtnColor = (themeColor) => {
-  const themeColorMap = COLOR;
-  return themeColorMap[themeColor] || themeColor || themeColorMap.primary;
+  /**
+   * Color codes regular expression
+   * https://regexr.com/39cgj
+   */
+  const colorRegex = new RegExp(/(?:#|0x)(?:[a-f0-9]{3}|[a-f0-9]{6})\b|(?:rgb|hsl)a?\([^)]*\)/);
+  const isValidColorCode = colorRegex.test(themeColor.toLocaleLowerCase());
+  return isValidColorCode ? themeColor : (COLOR[themeColor] || COLOR.primary);
 };
 
 /**
@@ -98,7 +104,7 @@ const Button = ({
   onClick,
   ...props
 }) => {
-  const btnColor = isDisabled ? '#dadada' : makeBtnColor(themeColor);
+  const btnColor = isDisabled ? DISABLED_COLOR : makeBtnColor(themeColor);
 
   return (
     <StyledButton
