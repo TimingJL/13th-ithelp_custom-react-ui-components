@@ -1,6 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Switch from '../components/Switch';
+
+const SwitchGroup = styled.div`
+  display: flex;
+  align-items: center;
+  & > * {
+    margin-left: 20px;
+  }
+`;
 
 export default {
   title: '數據輸入元件/Switch',
@@ -23,13 +32,31 @@ DisabledSwitch.args = {
   isDisabled: true,
 };
 
-export const SmallSize = Template.bind({});
-SmallSize.args = {
-  size: 'small',
-};
+const TemplateWithDiffSize = (args) => (
+  <SwitchGroup>
+    <Switch
+      size="small"
+      {...args}
+    />
+    <Switch {...args} />
+  </SwitchGroup>
+);
 
-export const SwitchWithChildrenLabel = Template.bind({});
-SwitchWithChildrenLabel.args = {
-  checkedChildren: '開啟',
-  unCheckedChildren: '關閉',
-};
+export const SwitchWithSize = TemplateWithDiffSize.bind({});
+
+const TemplateWithLabel = (args) => (
+  <SwitchGroup>
+    <Switch
+      checkedChildren="開啟"
+      unCheckedChildren="關閉"
+      {...args}
+    />
+    <Switch
+      checkedChildren="開啟一個長度彈性的 Switch"
+      unCheckedChildren="關閉一個長度彈性的 Switch"
+      {...args}
+    />
+  </SwitchGroup>
+);
+
+export const SwitchWithChildrenLabel = TemplateWithLabel.bind({});

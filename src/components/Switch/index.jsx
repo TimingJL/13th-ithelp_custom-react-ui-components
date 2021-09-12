@@ -7,7 +7,7 @@ import { makeColor } from '../../utils/color';
 const DISABLED_COLOR = '#BFBFBF';
 
 const transitionStyle = css`
-  transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, right 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
 const SwitchButton = styled.div`
@@ -44,15 +44,13 @@ const Label = styled.div`
   white-space: nowrap;
   top: 50%;
   transform: translateY(-50%);
+  padding: 0px ${(props) => props.$padding}px;
   ${(props) => {
     if (props.$isChecked) {
-      return `
-      left: 0px;
-      margin-left: ${props.$padding}px;
-      `;
+      return `right: ${props.$switchWidth - props.$labelWidth}px;`;
     }
     return `
-    left: ${props.$distanceToThumb + props.$thumbSize - props.$padding}px;
+    right: 0px;
     `;
   }}
   ${transitionStyle}
@@ -70,11 +68,10 @@ const Switch = ({
   ...props
 }) => {
   const labelRef = useRef(null);
-  const [switchWidth, setSwitchWidth] = useState(size === 'small' ? 28 : 42);
+  const [labelWidth, setLabelWidth] = useState(0);
   const [checked, setChecked] = useState(isChecked || false);
   const thumbSize = size === 'small' ? 12 : 18;
-  const distanceToThumb = 8;
-  const padding = 4;
+  const switchWidth = thumbSize + labelWidth;
   const switchColor = checked ? makeColor(themeColor) : DISABLED_COLOR;
 
   const handleClickSwitch = () => {
@@ -88,9 +85,10 @@ const Switch = ({
   };
 
   useEffect(() => {
-    const labelWidth = labelRef?.current?.clientWidth;
-    if (labelWidth) {
-      setSwitchWidth(labelWidth + thumbSize + distanceToThumb);
+    const minLabelSize = thumbSize * 1.2;
+    const currentLabelWidth = labelRef?.current?.clientWidth;
+    if (currentLabelWidth) {
+      setLabelWidth(currentLabelWidth < minLabelSize ? minLabelSize : currentLabelWidth);
     }
   }, [labelRef?.current?.clientWidth]);
 
@@ -119,9 +117,9 @@ const Switch = ({
       />
       <Label
         ref={labelRef}
-        $distanceToThumb={distanceToThumb}
-        $thumbSize={thumbSize}
-        $padding={padding}
+        $padding={thumbSize / 3}
+        $labelWidth={labelWidth}
+        $switchWidth={switchWidth}
         $isChecked={checked}
       >
         {
