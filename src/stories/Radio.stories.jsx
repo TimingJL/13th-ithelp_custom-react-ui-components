@@ -44,6 +44,45 @@ const TemplateWithState = (args) => {
   );
 };
 
+const TemplateWithColorPicker = (args) => {
+  const { isChecked: defaultChecked } = args;
+  const defaultColor = '#FE6B8B';
+  const [isChecked, setIsChecked] = useState(defaultChecked);
+  const [pickedColor, setPickedColor] = useState(defaultColor);
+
+  const handleOnClick = () => {
+    setIsChecked(true);
+  };
+
+  return (
+    <RadioWrapper>
+      <Radio
+        {...args}
+        themeColor={pickedColor}
+        isChecked={isChecked}
+        onClick={handleOnClick}
+      />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <input
+          type="color"
+          value={pickedColor}
+          onChange={(event) => setPickedColor(event.target.value)}
+          style={{ marginRight: 8 }}
+        />
+        <Button
+          variant="outlined"
+          themeColor={pickedColor}
+          onClick={() => {
+            setIsChecked(false);
+          }}
+        >
+          重設
+        </Button>
+      </div>
+    </RadioWrapper>
+  );
+};
+
 const TemplateWithRadioGroup = (args) => {
   const [selectedValue, setSelectedValue] = useState('');
 
@@ -73,10 +112,9 @@ Default.args = {
   children: 'Radio',
 };
 
-export const CustomizeColor = Template.bind({});
+export const CustomizeColor = TemplateWithColorPicker.bind({});
 CustomizeColor.args = {
   children: 'Radio',
-  themeColor: '#FE6B8B',
   isChecked: true,
 };
 

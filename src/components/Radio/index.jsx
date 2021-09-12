@@ -47,7 +47,6 @@ const Radio = ({
   return (
     <StyledRadio
       onClick={isDisabled ? null : onClick}
-      // onClick={() => console.log('isDisabled: ', isDisabled)}
       $isDisabled={isDisabled}
       $btnColor={btnColor}
       {...props}
