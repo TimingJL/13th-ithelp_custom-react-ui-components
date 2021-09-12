@@ -92,8 +92,8 @@ const TemplateWithRadioGroup = (args) => {
 
   return (
     <RadioGroup
-      onChange={handleOnChange}
       value={selectedValue}
+      onChange={handleOnChange}
       columns={2}
       style={{
         maxWidth: 500,

@@ -56,7 +56,7 @@ const Radio = ({
           ? <RadioButtonCheckedIcon className="radio__checked-icon" />
           : <RadioButtonUncheckedIcon className="radio__unchecked-icon" />
       }
-      <span>{children}</span>
+      {!!children && <span>{children}</span>}
     </StyledRadio>
   );
 };
@@ -81,7 +81,6 @@ Radio.propTypes = {
   /**
    * 內容
    */
-
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.string,
