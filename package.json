@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "predeploy": "npm run build-storybook",
-    "deploy-storybook": "storybook-to-ghpages",
+    "deploy-storybook": "gh-pages -d storybook-static",
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=72f541908a9a"
   },
