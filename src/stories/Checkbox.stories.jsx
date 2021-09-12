@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import Checkbox from '../components/Checkbox';
 
@@ -7,9 +8,33 @@ export default {
   component: Checkbox,
 };
 
-const Template = (args) => <Checkbox {...args} />;
+const RadioWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
 
-export const Default = Template.bind({});
+const TemplateWithState = (args) => {
+  const { isChecked: defaultChecked } = args;
+  const [isChecked, setIsChecked] = useState(defaultChecked);
+
+  const handleOnClick = () => {
+    setIsChecked((prev) => !prev);
+  };
+
+  return (
+    <RadioWrapper>
+      <Checkbox
+        {...args}
+        isChecked={isChecked}
+        onClick={handleOnClick}
+      />
+    </RadioWrapper>
+  );
+};
+
+export const Default = TemplateWithState.bind({});
 Default.args = {
-  children: 'checkbox',
+  children: 'Checkbox',
 };
