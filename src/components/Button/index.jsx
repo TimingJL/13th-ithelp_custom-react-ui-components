@@ -3,9 +3,7 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeColor } from '../../utils/color';
-
-const DISABLED_COLOR = '#dadada';
+import { useColor } from 'hooks/useColor';
 
 const containedStyle = css`
   background: ${(props) => props.$btnColor};
@@ -94,7 +92,8 @@ const Button = ({
   onClick,
   ...props
 }) => {
-  const btnColor = isDisabled ? DISABLED_COLOR : makeColor(themeColor);
+  const { makeColor } = useColor();
+  const btnColor = makeColor({ themeColor, isDisabled });
 
   return (
     <StyledButton

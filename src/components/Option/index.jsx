@@ -5,8 +5,7 @@ import clsx from 'clsx';
 
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-
-import { makeColor } from '../../utils/color';
+import { useColor } from 'hooks/useColor';
 
 const DISABLED_COLOR = '#dadada';
 
@@ -45,7 +44,8 @@ const Option = ({
   children,
   ...props
 }) => {
-  const btnColor = isDisabled ? DISABLED_COLOR : makeColor(themeColor);
+  const { makeColor } = useColor();
+  const btnColor = makeColor({ themeColor, isDisabled });
 
   return (
     <StyledOption

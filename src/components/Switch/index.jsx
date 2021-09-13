@@ -1,10 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-
-import { makeColor } from '../../utils/color';
-
-const DISABLED_COLOR = '#BFBFBF';
+import { useColor } from 'hooks/useColor';
 
 const transitionStyle = css`
   transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, right 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -68,11 +65,12 @@ const Switch = ({
   ...props
 }) => {
   const labelRef = useRef(null);
+  const { makeColor } = useColor();
   const [labelWidth, setLabelWidth] = useState(0);
   const [checked, setChecked] = useState(isChecked || false);
   const thumbSize = size === 'small' ? 12 : 18;
   const switchWidth = thumbSize + labelWidth;
-  const switchColor = checked ? makeColor(themeColor) : DISABLED_COLOR;
+  const switchColor = makeColor({ themeColor, isDisabled: !checked });
 
   const handleClickSwitch = () => {
     setChecked((prev) => {
@@ -90,7 +88,7 @@ const Switch = ({
     if (currentLabelWidth) {
       setLabelWidth(currentLabelWidth < minLabelSize ? minLabelSize : currentLabelWidth);
     }
-  }, [labelRef?.current?.clientWidth]);
+  }, [labelRef?.current?.clientWidth, thumbSize]);
 
   useEffect(() => {
     setChecked(() => {
@@ -99,6 +97,7 @@ const Switch = ({
       }
       return isChecked;
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
   return (
