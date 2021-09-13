@@ -54,8 +54,8 @@ const Label = styled.div`
 `;
 
 /**
- * Switch 元件是一個開關的選擇器(另外常見的說法是 Toggle Switch / Switch Button)。
- * 在我們表示開關狀態，或兩種狀態之間的切換時，很適合使用。和 checkbox 的區別是， checkbox 一般只用來標記狀態是否被選取，
+ * Switch 元件是一個開關的選擇器。
+ * 在我們表示開關狀態，或兩種狀態之間的切換時，很適合使用。和 Checkbox 的區別是， Checkbox 一般只用來標記狀態是否被選取，
  * 需要提交之後才會生效，而 Switch 則會在觸發的當下直接觸發狀態的改變。
  */
 const Switch = ({
