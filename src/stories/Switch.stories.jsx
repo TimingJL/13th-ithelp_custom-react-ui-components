@@ -14,6 +14,9 @@ const SwitchGroup = styled.div`
 export default {
   title: '數據輸入元件/Switch',
   component: Switch,
+  argTypes: {
+    themeColor: { control: 'color' },
+  },
 };
 
 const Template = (args) => <Switch {...args} />;
