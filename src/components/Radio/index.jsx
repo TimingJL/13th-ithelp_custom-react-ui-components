@@ -38,6 +38,10 @@ Radio.propTypes = {
    */
   onClick: PropTypes.func,
   /**
+   * 在 RadioGroup 中用來幫助判斷是否被選中
+   */
+  value: PropTypes.string,
+  /**
    * 內容
    */
   children: PropTypes.oneOfType([
@@ -51,6 +55,7 @@ Radio.defaultProps = {
   isDisabled: false,
   themeColor: 'primary',
   onClick: () => {},
+  value: null,
   children: '',
 };
 
