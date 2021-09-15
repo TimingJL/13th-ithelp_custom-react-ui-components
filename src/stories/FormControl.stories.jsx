@@ -74,17 +74,17 @@ const TemplateWithPlacement = (args) => (
   </Column>
 );
 
-export const WithPlacement = TemplateWithPlacement.bind({});
-WithPlacement.args = {
+export const WithDiffPlacementLabel = TemplateWithPlacement.bind({});
+WithDiffPlacementLabel.args = {
   children: <TextField placeholder="請輸入" />,
 };
 
-export const RadioWithPlacement = TemplateWithPlacement.bind({});
-RadioWithPlacement.args = {
+export const RadioWithLabel = TemplateWithPlacement.bind({});
+RadioWithLabel.args = {
   children: <Radio />,
 };
 
-export const SwitchWithPlacement = TemplateWithPlacement.bind({});
-SwitchWithPlacement.args = {
+export const SwitchWithLabel = TemplateWithPlacement.bind({});
+SwitchWithLabel.args = {
   children: <Switch />,
 };
