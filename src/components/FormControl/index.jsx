@@ -97,6 +97,12 @@ const StyledFormControl = styled.div`
   }}
 `;
 
+/**
+ * `FormControl` 讓我們可以將 form input 所需要的共同前後文特性獨立出來管理，
+ * 使被 control 的子元件之間的樣式能夠保持一致性。
+ * 例如在 form input 元件 `TextField`, `Switch`, `Checkbox` 當中，
+ * 將 `label`, `required`, `error` ...等邏輯與樣式獨立出來藉由 FormControl 來管理。
+ */
 const FormControl = ({
   label,
   children,
