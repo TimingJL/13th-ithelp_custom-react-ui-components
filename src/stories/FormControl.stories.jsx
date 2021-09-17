@@ -9,9 +9,6 @@ import Switch from '../components/Switch';
 export default {
   title: '數據輸入元件/FormControl',
   component: FormControl,
-  argTypes: {
-    themeColor: { control: 'color' },
-  },
 };
 
 const Template = (args) => <FormControl {...args} />;
