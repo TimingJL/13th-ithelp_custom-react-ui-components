@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useColor } from 'hooks/useColor';
@@ -30,7 +30,7 @@ const StyledSlider = styled.input`
       content: '';
       position: absolute;
       z-index: -1;
-      width: ${(props) => props.$currentValue}%;
+      width: ${(props) => props.$widthRatio}%;
       left: 0px;
       ${trackStyle}
     }
@@ -64,33 +64,34 @@ const StyledSlider = styled.input`
  * `Slider` 是一個滑動型輸入器，允許使用者在數值區間內進行選擇，選擇的值可為連續值或是離散值。
  */
 const Slider = ({
+  min,
+  max,
+  step,
+  defaultValue,
   onChange,
   themeColor,
   ...props
 }) => {
   const sliderRef = useRef();
-  const [currentValue, setCurrentValue] = useState();
+  const [currentValue, setCurrentValue] = useState(defaultValue);
   const { makeColor } = useColor();
   const color = makeColor({ themeColor });
 
   const handleOnChange = (event) => {
-    setCurrentValue(event.target.value);
+    setCurrentValue(sliderRef.current.value);
     onChange(event);
   };
-
-  useEffect(() => {
-    setCurrentValue(sliderRef.current.value);
-  }, []);
 
   return (
     <StyledSlider
       ref={sliderRef}
-      $currentValue={currentValue}
+      $widthRatio={(currentValue / max) * 100}
       $color={color}
       type="range"
-      min="0"
-      max="100"
-      defaultValue={80}
+      min={min}
+      max={max}
+      step={step}
+      defaultValue={defaultValue}
       onChange={handleOnChange}
       {...props}
     />
@@ -98,6 +99,22 @@ const Slider = ({
 };
 
 Slider.propTypes = {
+  /**
+   * 預設值
+   */
+  defaultValue: PropTypes.number,
+  /**
+   * 最小值
+   */
+  min: PropTypes.number,
+  /**
+   * 最大值
+   */
+  max: PropTypes.number,
+  /**
+   * 步長，取值必須大於 0，並且可被 (max - min) 整除
+   */
+  step: PropTypes.number,
   /**
    * 主題配色，primary、secondary 或是自己傳入色票
    */
@@ -109,6 +126,10 @@ Slider.propTypes = {
 };
 
 Slider.defaultProps = {
+  defaultValue: 0,
+  min: 0,
+  max: 100,
+  step: 1,
   themeColor: 'primary',
   onChange: () => {},
 };

@@ -147,7 +147,7 @@ CustomSlider.propTypes = {
 CustomSlider.defaultProps = {
   min: 0,
   max: 100,
-  defaultValue: 50,
+  defaultValue: 0,
   onChange: () => {},
 };
 
