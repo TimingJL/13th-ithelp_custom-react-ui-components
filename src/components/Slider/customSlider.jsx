@@ -89,6 +89,7 @@ const CustomSlider = ({
       .subscribe((mousePosX) => {
         handleUpdatePosition({ mousePosX });
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { // 點擊 track bar 可以使 thumb 直接跳到被點擊位置
@@ -101,6 +102,7 @@ const CustomSlider = ({
       .subscribe((mousePosX) => {
         handleUpdatePosition({ mousePosX });
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => { // set default value
@@ -110,6 +112,7 @@ const CustomSlider = ({
       min, max, value: defaultValue, railWidth,
     });
     setThumbPosX(defaultWidth);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
