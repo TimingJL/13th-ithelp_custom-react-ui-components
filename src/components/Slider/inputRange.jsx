@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { useColor } from 'hooks/useColor';
 
 const SIZE_THUMB = 20;
 
@@ -12,7 +13,7 @@ const railStyle = css`
 `;
 
 const trackStyle = css`
-  background: red;
+  background: ${(props) => props.$color};
   border-radius: 5px;
   height: 6px;
 `;
@@ -43,7 +44,7 @@ const StyledSlider = styled.input`
 		border-radius: 50%;
 		border: 2px solid white;
 		background: white;
-		border: 0.4em solid pink;
+		border: 0.4em solid ${(props) => props.$color};
 		cursor: pointer;
 		transition: box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
 		&:hover {
@@ -54,7 +55,7 @@ const StyledSlider = styled.input`
 			cursor: grabbing;
 			transform: scale(0.975);
 			box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-      background: pink;
+      background: ${(props) => props.$color};
 		}
 	}
 `;
@@ -64,10 +65,14 @@ const StyledSlider = styled.input`
  */
 const Slider = ({
   onChange,
+  themeColor,
   ...props
 }) => {
   const sliderRef = useRef();
   const [currentValue, setCurrentValue] = useState();
+  const { makeColor } = useColor();
+  const color = makeColor({ themeColor });
+
   const handleOnChange = (event) => {
     setCurrentValue(event.target.value);
     onChange(event);
@@ -81,6 +86,7 @@ const Slider = ({
     <StyledSlider
       ref={sliderRef}
       $currentValue={currentValue}
+      $color={color}
       type="range"
       min="0"
       max="100"
@@ -93,12 +99,17 @@ const Slider = ({
 
 Slider.propTypes = {
   /**
+   * 主題配色，primary、secondary 或是自己傳入色票
+   */
+  themeColor: PropTypes.oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
+  /**
    * 數值改變的 callback function
    */
   onChange: PropTypes.func,
 };
 
 Slider.defaultProps = {
+  themeColor: 'primary',
   onChange: () => {},
 };
 

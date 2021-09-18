@@ -14,6 +14,11 @@ const Template = (args) => <Slider {...args} />;
 export const Default = Template.bind({});
 Default.args = {};
 
+export const CustomColor = Template.bind({});
+CustomColor.args = {
+  themeColor: '#42f5c5',
+};
+
 export const HandmadeSlider = TemplateCustom.bind({});
 HandmadeSlider.args = {
   // eslint-disable-next-line no-console
