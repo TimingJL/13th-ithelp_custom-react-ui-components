@@ -11,5 +11,5 @@ const Template = (args) => <Slider {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Slider',
+
 };
