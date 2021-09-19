@@ -7,13 +7,10 @@ import { useColor } from 'hooks/useColor';
 
 const RateWrapper = styled.div`
   display: inline-flex;
-  ${(props) => {
-    if (props.$isString) {
-      return `font-size: ${props.$size}px;`;
-    }
-    return null;
-  }}
+  ${(props) => (props.$isString ? `font-size: ${props.$size}px;` : null)}
+
   .rate__character-first, .rate__character-second {
+    ${(props) => (props.$isString ? null : `height: ${props.$size}px;`)}
     & > * {
       width: ${(props) => props.$size}px;
       height: ${(props) => props.$size}px;
