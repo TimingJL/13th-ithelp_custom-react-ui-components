@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import StarIcon from '@material-ui/icons/Star';
 import PropTypes from 'prop-types';
@@ -6,7 +6,23 @@ import PropTypes from 'prop-types';
 import { useColor } from 'hooks/useColor';
 
 const RateWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
+  ${(props) => {
+    if (props.$isString) {
+      return `font-size: ${props.$size}px;`;
+    }
+    return null;
+  }}
+  .rate__character-first, .rate__character-second {
+    & > * {
+      width: ${(props) => props.$size}px;
+      height: ${(props) => props.$size}px;
+    }
+  }
+
+  .rate__character-first {
+    ${(props) => (props.$allowHalf ? null : 'display: none;')}
+  }
 `;
 
 const CharacterWrapper = styled.div`
@@ -28,31 +44,64 @@ const CharacterSecond = styled.div`
 
 const Rate = ({
   count,
+  defaultValue,
   character,
   themeColor,
+  size,
+  allowHalf,
+  isDisabled,
+  onChange,
 }) => {
   const { makeColor } = useColor();
   const starColor = makeColor({ themeColor });
-  const [previewValue, setPreviewValue] = useState(0);
+  const [innerValue, setInnerValue] = useState(defaultValue);
+  const [previewValue, setPreviewValue] = useState(innerValue);
+  const isString = typeof character === 'string';
+
+  const handleOnClick = (clickedValue) => {
+    if (isDisabled) return;
+    if (clickedValue === innerValue) {
+      setInnerValue(0);
+    } else {
+      setInnerValue(clickedValue);
+    }
+  };
+
+  const handleChangePreviewValue = (currentValue) => {
+    if (!isDisabled) {
+      setPreviewValue(currentValue);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof onChange === 'function') {
+      onChange(innerValue);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [innerValue]);
 
   return (
-    <RateWrapper>
+    <RateWrapper $size={size} $allowHalf={allowHalf} $isString={isString}>
       {
         [...Array(count).keys()].map((itemKey) => (
           <CharacterWrapper key={itemKey}>
             <CharacterFirst
+              className="rate__character-first"
               $starColor={starColor}
               $isActive={itemKey + 0.5 <= previewValue}
-              onMouseOver={() => setPreviewValue(itemKey + 0.5)}
-              onMouseLeave={() => setPreviewValue(0)}
+              onMouseOver={() => handleChangePreviewValue(itemKey + 0.5)}
+              onMouseLeave={() => handleChangePreviewValue(innerValue)}
+              onClick={() => handleOnClick(itemKey + 0.5)}
             >
               {character}
             </CharacterFirst>
             <CharacterSecond
+              className="rate__character-second"
               $starColor={starColor}
               $isActive={itemKey + 1 <= previewValue}
-              onMouseOver={() => setPreviewValue(itemKey + 1)}
-              onMouseLeave={() => setPreviewValue(0)}
+              onMouseOver={() => handleChangePreviewValue(itemKey + 1)}
+              onMouseLeave={() => handleChangePreviewValue(innerValue)}
+              onClick={() => handleOnClick(itemKey + 1)}
             >
               {character}
             </CharacterSecond>
@@ -69,9 +118,29 @@ Rate.propTypes = {
    */
   count: PropTypes.number,
   /**
+   * 預設值
+   */
+  defaultValue: PropTypes.number,
+  /**
    * 自定義字符
    */
-  character: PropTypes.element,
+  character: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  /**
+   * star 大小
+   */
+  size: PropTypes.number,
+  /**
+   * 是否能進行交互
+   */
+  isDisabled: PropTypes.bool,
+  /**
+   * 是否允許半顆星星
+   */
+  allowHalf: PropTypes.bool,
+  /**
+   * 被點選時的 callback
+   */
+  onChange: PropTypes.func,
   /**
    * 主題配色，primary、secondary 或是自己傳入色票
    */
@@ -80,8 +149,13 @@ Rate.propTypes = {
 
 Rate.defaultProps = {
   count: 5,
+  defaultValue: 0,
   character: <StarIcon />,
   themeColor: '#FBDB14',
+  size: 32,
+  isDisabled: false,
+  allowHalf: false,
+  onChange: () => {},
 };
 
 export default Rate;
