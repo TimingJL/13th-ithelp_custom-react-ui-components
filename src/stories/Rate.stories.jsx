@@ -1,4 +1,5 @@
 import React from 'react';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 import Rate from '../components/Rate';
 
@@ -10,6 +11,9 @@ export default {
 const Template = (args) => <Rate {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  children: 'Rate',
+Default.args = {};
+
+export const CustomCharacter = Template.bind({});
+CustomCharacter.args = {
+  character: <FavoriteBorderIcon />,
 };
