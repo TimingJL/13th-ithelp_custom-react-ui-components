@@ -78,7 +78,11 @@ const Rate = ({
   }, [innerValue]);
 
   return (
-    <RateWrapper $size={size} $allowHalf={allowHalf} $isString={isString}>
+    <RateWrapper
+      $size={size}
+      $allowHalf={allowHalf}
+      $isString={isString}
+    >
       {
         [...Array(count).keys()].map((itemKey) => (
           <CharacterWrapper key={itemKey}>
