@@ -46,6 +46,15 @@ const TemplateWithDiffCharacter = (args) => (
   </CharacterGroup>
 );
 
+const TemplateWithCount = (args) => (
+  <CharacterGroup>
+    <Rate {...args} count={1} />
+    <Rate {...args} count={3} />
+    <Rate {...args} count={5} />
+    <Rate {...args} count={7} />
+  </CharacterGroup>
+);
+
 export const Default = Template.bind({});
 Default.args = {};
 
@@ -53,6 +62,9 @@ export const WithDefaultValue = Template.bind({});
 WithDefaultValue.args = {
   defaultValue: 2.5,
 };
+
+export const WithCount = TemplateWithCount.bind({});
+WithCount.args = {};
 
 export const DisableInteraction = Template.bind({});
 DisableInteraction.args = {
