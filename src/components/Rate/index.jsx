@@ -39,6 +39,9 @@ const CharacterSecond = styled.div`
   cursor: pointer;
 `;
 
+/**
+ * `Rate` 是一個評分元件。一方面可以對於評價的數據展示，另一方面可以讓人進行對評分的操作。
+*/
 const Rate = ({
   count,
   defaultValue,
