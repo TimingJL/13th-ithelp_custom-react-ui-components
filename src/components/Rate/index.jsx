@@ -60,11 +60,7 @@ const Rate = ({
 
   const handleOnClick = (clickedValue) => {
     if (isDisabled) return;
-    if (clickedValue === innerValue) {
-      setInnerValue(0);
-    } else {
-      setInnerValue(clickedValue);
-    }
+    setInnerValue((previousValue) => (previousValue === clickedValue ? 0 : clickedValue));
   };
 
   const handleChangePreviewValue = (currentValue) => {
