@@ -61,7 +61,7 @@ Upload.propTypes = {
   /**
    * 內容，這邊指的是上傳按鈕外觀
    */
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 Upload.defaultProps = {
