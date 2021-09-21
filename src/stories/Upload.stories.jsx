@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Upload from '../components/Upload';
 import Button from '../components/Button';
 
@@ -15,6 +16,26 @@ const SpaceBetween = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const FilesWrapper = styled.div`
+  padding: 20px 0px;
+  & > *:not(:first-child) {
+    margin-top: 12px;
+  }
+`;
+
+const FileItem = styled(SpaceBetween)`
+  padding: 20px 12px;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+`;
+
+const DeleteButton = styled(DeleteOutlineIcon)`
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const TemplateDefault = (args) => {
@@ -122,7 +143,72 @@ const TemplatePreview = (args) => {
   );
 };
 
-export const PreviewUploadImages = TemplatePreview.bind({});
-PreviewUploadImages.args = {
+export const PreviewUploadImage = TemplatePreview.bind({});
+PreviewUploadImage.args = {
   accept: 'image/*',
+};
+
+const TemplateMultipleUpload = (args) => {
+  const [resetKey, setResetKey] = useState(0);
+  const [fileList, setFileList] = useState([]);
+
+  const handleOnPreview = (files) => {
+    files.forEach((file, index) => {
+      setFileList((prev) => [...prev, {
+        id: index,
+        name: file.name,
+      }]);
+    });
+  };
+
+  const handleDeleteItem = (fileId) => {
+    setFileList((prev) => prev.filter((item) => item.id !== fileId));
+  };
+
+  const handleResetUpload = () => {
+    setResetKey((prev) => prev + 1);
+    setFileList([]);
+  };
+
+  return (
+    <div>
+      <SpaceBetween>
+        <Upload
+          {...args}
+          resetKey={resetKey}
+          onChange={handleOnPreview}
+        >
+          <Button
+            variant="outlined"
+            startIcon={<CloudUploadIcon />}
+          >
+            上傳圖片
+          </Button>
+        </Upload>
+        <Button
+          variant="outlined"
+          startIcon={<RotateLeftIcon />}
+          onClick={handleResetUpload}
+        >
+          重設
+        </Button>
+      </SpaceBetween>
+      <FilesWrapper>
+        {
+          fileList.map((file) => (
+            <FileItem key={file.id}>
+              <div>{file.name}</div>
+              <DeleteButton onClick={() => handleDeleteItem(file.id)} />
+            </FileItem>
+          ))
+        }
+      </FilesWrapper>
+    </div>
+  );
+};
+
+export const UploadMultiple = TemplateMultipleUpload.bind({});
+UploadMultiple.args = {
+  accept: 'image/*',
+  multiple: true,
 };
