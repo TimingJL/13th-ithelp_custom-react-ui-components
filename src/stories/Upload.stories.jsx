@@ -38,6 +38,55 @@ const DeleteButton = styled(DeleteOutlineIcon)`
   }
 `;
 
+const PictureWallWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-gap: 8px;
+`;
+
+const PictureWallUpload = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border: 1px dashed #DDD;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    border: 1px dashed ${(props) => props.theme.color.primary};
+  }
+`;
+
+const PictureItem = styled.div`
+  width: 150px;
+  height: 150px;
+  position: relative;
+  .picture-item__delete-button {
+    display: none;
+  }
+  &:hover {
+    .picture-item__delete-button {
+      display: flex;
+    }
+  }
+`;
+
+const DeleteButtonMask = styled.div`
+  position: absolute;
+  background: #1d1010aa;
+  color: #FFF;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const TemplateDefault = (args) => {
   const [uploadFile, setUploadFile] = useState(null);
   const [resetKey, setResetKey] = useState(0);
@@ -150,7 +199,20 @@ PreviewUploadImage.args = {
 
 const TemplateMultipleUpload = (args) => {
   const [resetKey, setResetKey] = useState(0);
-  const [fileList, setFileList] = useState([]);
+  const [fileList, setFileList] = useState([
+    {
+      id: 'test-1',
+      name: '檔案01',
+    },
+    {
+      id: 'test-2',
+      name: '檔案02',
+    },
+    {
+      id: 'test-3',
+      name: '檔案03',
+    },
+  ]);
 
   const handleOnPreview = (files) => {
     files.forEach((file, index) => {
@@ -211,4 +273,77 @@ export const UploadMultiple = TemplateMultipleUpload.bind({});
 UploadMultiple.args = {
   accept: 'image/*',
   multiple: true,
+};
+
+const TemplatePictureWall = (args) => {
+  const [fileList, setFileList] = useState([
+    {
+      id: 0,
+      imageUrl: 'https://python-ecw.com/wp-content/uploads/2020/06/image.png',
+    },
+    {
+      id: 1,
+      imageUrl: 'https://dimin.net/software/panojs/IMG_7474-7511/256_005_000_000.jpg',
+    },
+    {
+      id: 2,
+      imageUrl: 'https://m.media-amazon.com/images/I/71VNNCJlnhL._CR204,0,1224,1224_UX256.jpg',
+    },
+    {
+      id: 3,
+      imageUrl: 'https://up.quizlet.com/fjrfh-Q2BsH-256s.jpg',
+    },
+  ]);
+
+  const handleOnPreview = (files) => {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      // convert image file to base64 string
+      setFileList((prev) => [...prev, {
+        id: file.size,
+        imageUrl: reader.result,
+      }]);
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDeleteItem = (fileId) => {
+    setFileList((prev) => prev.filter((item) => item.id !== fileId));
+  };
+
+  return (
+    <PictureWallWrapper>
+      {
+        fileList.map((file) => (
+          <PictureItem key={file.id}>
+            <img src={file.imageUrl} alt="" width={150} height={150} />
+            <DeleteButtonMask
+              className="picture-item__delete-button"
+              onClick={() => handleDeleteItem(file.id)}
+            >
+              <DeleteOutlineIcon />
+            </DeleteButtonMask>
+          </PictureItem>
+        ))
+      }
+      <Upload
+        {...args}
+        onChange={handleOnPreview}
+      >
+        <PictureWallUpload>
+          <div style={{ fontSize: 32 }}>＋</div>
+          <div>上傳照片</div>
+        </PictureWallUpload>
+      </Upload>
+    </PictureWallWrapper>
+  );
+};
+
+export const PictureWall = TemplatePictureWall.bind({});
+PictureWall.args = {
+  accept: 'image/*',
 };
