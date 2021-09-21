@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 /**
@@ -22,17 +22,10 @@ const Upload = ({
     }
   };
 
-  useEffect(() => {
-    if (resetKey) {
-      inputFileRef.current.value = '';
-      handleOnChange();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resetKey]);
-
   return (
     <>
       <input
+        key={resetKey}
         ref={inputFileRef}
         type="file"
         style={{ display: 'none' }}

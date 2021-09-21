@@ -23,6 +23,7 @@ const TemplateDefault = (args) => {
 
   const handleResetUpload = () => {
     setResetKey((prev) => prev + 1);
+    setUploadFile(null);
   };
 
   return (
@@ -31,7 +32,7 @@ const TemplateDefault = (args) => {
         <Upload
           {...args}
           resetKey={resetKey}
-          onChange={(files) => setUploadFile(files ? files[0] : null)}
+          onChange={(files) => setUploadFile(files[0])}
         >
           <Button
             variant="outlined"
@@ -70,3 +71,58 @@ const TemplateDefault = (args) => {
 
 export const Default = TemplateDefault.bind({});
 Default.args = {};
+
+const TemplatePreview = (args) => {
+  const [resetKey, setResetKey] = useState(0);
+  const [imageSrc, setImageSrc] = useState('');
+
+  const handleOnPreview = (files) => {
+    const file = files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      // convert image file to base64 string
+      setImageSrc(reader.result);
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleResetUpload = () => {
+    setResetKey((prev) => prev + 1);
+    setImageSrc(null);
+  };
+
+  return (
+    <div>
+      <SpaceBetween>
+        <Upload
+          {...args}
+          resetKey={resetKey}
+          onChange={handleOnPreview}
+        >
+          <Button
+            variant="outlined"
+            startIcon={<CloudUploadIcon />}
+          >
+            上傳圖片
+          </Button>
+        </Upload>
+        <Button
+          variant="outlined"
+          startIcon={<RotateLeftIcon />}
+          onClick={handleResetUpload}
+        >
+          重設
+        </Button>
+      </SpaceBetween>
+      {imageSrc && <img src={imageSrc} alt="" style={{ marginTop: 20 }} />}
+    </div>
+  );
+};
+
+export const PreviewUploadImages = TemplatePreview.bind({});
+PreviewUploadImages.args = {
+  accept: 'image/*',
+};
