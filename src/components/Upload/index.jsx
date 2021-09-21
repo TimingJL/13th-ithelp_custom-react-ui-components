@@ -50,7 +50,7 @@ const Upload = ({
 
 Upload.propTypes = {
   /**
-   * 重設鍵值
+   * 重設鍵值，鍵值被改變時 input value 會被重設
    */
   resetKey: PropTypes.number,
   /**
