@@ -26,10 +26,13 @@ const StyledChip = styled.div`
   display: inline-flex;
   align-items: center;
   border-radius: 50px;
-  padding: 0px 12px;
   height: 32px;
   border: 1px solid ${(props) => props.$color};
   ${(props) => variantMap[props.$variant] || variantMap.contained}
+`;
+
+const Label = styled.span`
+  padding: 0px 12px;
 `;
 
 /**
@@ -40,6 +43,7 @@ const Chip = ({
   variant,
   label,
   themeColor,
+  icon,
 }) => {
   const { makeColor } = useColor();
   const color = makeColor({ themeColor });
@@ -50,7 +54,10 @@ const Chip = ({
       $variant={variant}
       $color={color}
     >
-      {label}
+      {icon && React.cloneElement(icon, {
+        style: { marginLeft: 4, marginRight: -6 },
+      })}
+      <Label>{label}</Label>
     </StyledChip>
   );
 };
@@ -72,12 +79,17 @@ Chip.propTypes = {
    * 主題配色，primary、secondary 或是自己傳入色票
    */
   themeColor: PropTypes.oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
+  /**
+   * 圖示
+   */
+  icon: PropTypes.element,
 };
 
 Chip.defaultProps = {
   className: null,
   variant: 'contained',
   themeColor: 'primary',
+  icon: null,
 };
 
 export default Chip;

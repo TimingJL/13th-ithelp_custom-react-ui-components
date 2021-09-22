@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import FaceIcon from '@material-ui/icons/Face';
 import Chip from '../components/Chip';
 
 export default {
@@ -27,9 +27,10 @@ const TemplateVariant = (args) => (
     <Chip {...args} label="Outlined style" variant="outlined" />
   </VariantGroup>
 );
-const TemplateCustomColor = (args) => {
-  const defaultColor = '#FE6B8B';
-  const [pickedColor, setPickedColor] = useState(defaultColor);
+
+// eslint-disable-next-line react/prop-types
+const TemplateCustomColor = ({ defaultColor, ...args }) => {
+  const [pickedColor, setPickedColor] = useState(defaultColor || '#FE6B8B');
 
   return (
     <SpaceBetween>
@@ -56,4 +57,10 @@ Variant.args = {};
 
 export const CustomColor = TemplateCustomColor.bind({});
 CustomColor.args = {
+};
+
+export const WithIcon = TemplateCustomColor.bind({});
+WithIcon.args = {
+  icon: <FaceIcon />,
+  defaultColor: '#1976d2',
 };
