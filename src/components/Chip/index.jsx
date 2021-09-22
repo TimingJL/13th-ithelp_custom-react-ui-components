@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import { useColor } from 'hooks/useColor';
@@ -72,11 +73,11 @@ const Chip = ({
       $hasDelete={!!onDelete}
     >
       {icon && React.cloneElement(icon, {
-        className: 'chip__start-icon',
+        className: clsx(icon.props.className, 'chip__start-icon'),
       })}
       <Label>{label}</Label>
       {(deleteIcon || onDelete) && React.cloneElement(endIcon, {
-        className: 'chip__end-icon',
+        className: clsx(endIcon.props.className, 'chip__end-icon'),
         onClick: onDelete,
       })}
     </StyledChip>
