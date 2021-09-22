@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
+import CancelIcon from '@material-ui/icons/Cancel';
 import { useColor } from 'hooks/useColor';
 
 const containedStyle = css`
@@ -12,9 +13,6 @@ const containedStyle = css`
 const outlinedStyle = css`
   background: #FFF;
   color: ${(props) => props.$color};
-  &:hover {
-    background: ${(props) => `${props.$color}10`};
-  }
 `;
 
 const variantMap = {
@@ -29,6 +27,21 @@ const StyledChip = styled.div`
   height: 32px;
   border: 1px solid ${(props) => props.$color};
   ${(props) => variantMap[props.$variant] || variantMap.contained}
+
+  .chip__start-icon {
+    margin-left: 4px;
+    margin-right: -6px;
+  }
+
+  .chip__end-icon {
+    margin-right: 4px;
+    margin-left: -6px;
+    ${(props) => (props.$hasDelete ? 'cursor: pointer;' : null)}
+
+    &:hover {
+      ${(props) => (props.$hasDelete ? 'opacity: 0.8;' : null)}
+    }
+  }
 `;
 
 const Label = styled.span`
@@ -44,20 +57,28 @@ const Chip = ({
   label,
   themeColor,
   icon,
+  deleteIcon,
+  onDelete,
 }) => {
   const { makeColor } = useColor();
   const color = makeColor({ themeColor });
+  const endIcon = deleteIcon || <CancelIcon />;
 
   return (
     <StyledChip
       className={className}
       $variant={variant}
       $color={color}
+      $hasDelete={!!onDelete}
     >
       {icon && React.cloneElement(icon, {
-        style: { marginLeft: 4, marginRight: -6 },
+        className: 'chip__start-icon',
       })}
       <Label>{label}</Label>
+      {(deleteIcon || onDelete) && React.cloneElement(endIcon, {
+        className: 'chip__end-icon',
+        onClick: onDelete,
+      })}
     </StyledChip>
   );
 };
@@ -83,6 +104,14 @@ Chip.propTypes = {
    * 圖示
    */
   icon: PropTypes.element,
+  /**
+   * 刪除圖示
+   */
+  deleteIcon: PropTypes.element,
+  /**
+   * 刪除事件
+   */
+  onDelete: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf([null])]),
 };
 
 Chip.defaultProps = {
@@ -90,6 +119,8 @@ Chip.defaultProps = {
   variant: 'contained',
   themeColor: 'primary',
   icon: null,
+  deleteIcon: null,
+  onDelete: null,
 };
 
 export default Chip;

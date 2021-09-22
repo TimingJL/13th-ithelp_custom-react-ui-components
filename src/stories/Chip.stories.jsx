@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
+
 import Chip from '../components/Chip';
 
 export default {
@@ -18,6 +21,15 @@ const SpaceBetween = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const ChipsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  & > * {
+    margin: 12px;
+  }
 `;
 
 const Template = (args) => <Chip {...args} />;
@@ -47,20 +59,39 @@ const TemplateCustomColor = ({ defaultColor, ...args }) => {
   );
 };
 
+const TemplateWithDeleteIcon = () => {
+  const args = {
+    onDelete: null,
+    defaultColor: '#1976d2',
+  };
+  return (
+    <ChipsWrapper>
+      <Chip {...args} label="with onDelete" onDelete={() => null} />
+      <Chip {...args} label="icon with onDelete" onDelete={() => null} icon={<FaceIcon />} />
+      <Chip {...args} label="custom deleteIcon" deleteIcon={<DoneIcon />} />
+      <Chip {...args} label="icon with deleteIcon" deleteIcon={<DoneIcon />} icon={<FaceIcon />} />
+      <Chip {...args} label="with onDelete outlined" onDelete={() => null} variant="outlined" />
+      <Chip {...args} label="icon with onDelete outlined" onDelete={() => null} icon={<FaceIcon />} variant="outlined" />
+      <Chip {...args} label="custom deleteIcon outlined" deleteIcon={<DoneIcon />} variant="outlined" />
+      <Chip {...args} label="icon with deleteIcon outlined" deleteIcon={<DoneIcon />} icon={<FaceIcon />} variant="outlined" />
+    </ChipsWrapper>
+  );
+};
+
 export const Default = Template.bind({});
 Default.args = {
   label: 'Chip',
+  onDelete: null,
 };
 
 export const Variant = TemplateVariant.bind({});
-Variant.args = {};
+Variant.args = {
+  onDelete: null,
+};
 
 export const CustomColor = TemplateCustomColor.bind({});
 CustomColor.args = {
+  onDelete: null,
 };
 
-export const WithIcon = TemplateCustomColor.bind({});
-WithIcon.args = {
-  icon: <FaceIcon />,
-  defaultColor: '#1976d2',
-};
+export const WithIcon = TemplateWithDeleteIcon.bind({});
