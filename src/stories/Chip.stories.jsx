@@ -11,5 +11,5 @@ const Template = (args) => <Chip {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Chip',
+  label: 'Chip',
 };
