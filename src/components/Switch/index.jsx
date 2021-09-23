@@ -73,13 +73,7 @@ const Switch = ({
   const switchColor = makeColor({ themeColor, isDisabled: !checked });
 
   const handleClickSwitch = () => {
-    setChecked((prev) => {
-      const nextState = !prev;
-      if (typeof onChange === 'function') {
-        onChange(nextState);
-      }
-      return nextState;
-    });
+    setChecked((prev) => !prev);
   };
 
   useEffect(() => {
@@ -91,12 +85,7 @@ const Switch = ({
   }, [labelRef?.current?.clientWidth, thumbSize]);
 
   useEffect(() => {
-    setChecked(() => {
-      if (typeof onChange === 'function') {
-        onChange(isChecked);
-      }
-      return isChecked;
-    });
+    onChange(isChecked);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
