@@ -92,7 +92,7 @@ Placement.args = {
 
 export const WithMax = TemplateMax.bind({});
 WithMax.args = {
-  max: 99,
+  max: 87,
   children: <MailIcon />,
 };
 
