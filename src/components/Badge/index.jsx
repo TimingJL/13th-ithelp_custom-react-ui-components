@@ -7,29 +7,25 @@ import { useColor } from 'hooks/useColor';
 const topLeftStyle = css`
   top: 0px;
   left: 0px;
-  transform: scale(1) translate(-50%, -50%);
-  transform-origin: 0% 0%;
+  transform: translate(-50%, -50%);
 `;
 
 const topRightStyle = css`
   top: 0px;
   right: 0px;
-  transform: scale(1) translate(50%, -50%);
-  transform-origin: 100% 0%;
+  transform: translate(50%, -50%);
 `;
 
 const bottomLeftStyle = css`
   bottom: 0px;
   left: 0px;
-  transform: scale(1) translate(-50%, 50%);
-  transform-origin: 0% 100%;
+  transform: translate(-50%, 50%);
 `;
 
 const bottomRightStyle = css`
   bottom: 0px;
   right: 0px;
-  transform: scale(1) translate(50%, 50%);
-  transform-origin: 100% 100%;
+  transform: translate(50%, 50%);
 `;
 
 const placementStyleMap = {
