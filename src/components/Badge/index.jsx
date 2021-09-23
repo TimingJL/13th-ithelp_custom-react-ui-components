@@ -74,6 +74,16 @@ const DotBadge = styled.div`
   ${(props) => placementStyleMap[props.$placement] || topRightStyle}
 `;
 
+const makeBadgeContent = ({ showZero, max, badgeContent }) => {
+  if (showZero && badgeContent === 0) {
+    return '0';
+  }
+  if (!showZero && badgeContent === 0) {
+    return null;
+  }
+  return badgeContent > max ? `${max}+` : badgeContent;
+};
+
 /**
  * `Badge` 可以讓我們在其 children element 的右上角(預設位置)顯示一個小徽章，
  * 通常用來表示需要處理的訊息數量，透過醒目的視覺形式來吸引用戶處理。
@@ -86,9 +96,11 @@ const Badge = ({
   max,
   variant,
   className,
+  showZero,
 }) => {
   const { makeColor } = useColor();
   const color = makeColor({ themeColor });
+  const content = makeBadgeContent({ showZero, max, badgeContent });
 
   return (
     <BadgeWrapper>
@@ -100,13 +112,13 @@ const Badge = ({
         $placement={placement}
       />
       )}
-      {variant === 'standard' && (
+      {variant === 'standard' && content && (
       <StandardBadge
         className={className}
         $color={color}
         $placement={placement}
       >
-        {badgeContent > max ? `${max}+` : badgeContent}
+        {content}
       </StandardBadge>
       )}
     </BadgeWrapper>
@@ -139,6 +151,10 @@ Badge.propTypes = {
    */
   variant: PropTypes.oneOf(['standard', 'dot']),
   /**
+   * 是否呈現 0
+   */
+  showZero: PropTypes.bool,
+  /**
    * 內容
    */
   children: PropTypes.element.isRequired,
@@ -151,6 +167,7 @@ Badge.defaultProps = {
   placement: 'top-right',
   variant: 'standard',
   max: 99,
+  showZero: false,
 };
 
 export default Badge;

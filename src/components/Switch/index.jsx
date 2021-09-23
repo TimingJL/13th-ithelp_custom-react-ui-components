@@ -85,9 +85,9 @@ const Switch = ({
   }, [labelRef?.current?.clientWidth, thumbSize]);
 
   useEffect(() => {
-    onChange(isChecked);
+    onChange(checked);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isChecked]);
+  }, [checked]);
 
   return (
     <SwitchButton

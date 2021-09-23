@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MailIcon from '@material-ui/icons/Mail';
 import Badge from '../components/Badge';
 import TextField from '../components/TextField';
+import Switch from '../components/Switch';
 
 export default {
   title: '數據展示元件/Badge',
@@ -78,6 +79,22 @@ const TemplateCustomColor = (args) => {
   );
 };
 
+const TemplateShowZero = (args) => {
+  const [showZero, setShowZero] = useState(true);
+
+  return (
+    <SpaceBetween>
+      <VariantGroup>
+        <Badge {...args} showZero={showZero} />
+      </VariantGroup>
+      <Switch
+        isChecked={showZero}
+        onChange={(value) => setShowZero(value)}
+      />
+    </SpaceBetween>
+  );
+};
+
 export const Default = Template.bind({});
 Default.args = {
   children: <MailIcon />,
@@ -107,4 +124,10 @@ export const CustomColor = TemplateCustomColor.bind({});
 CustomColor.args = {
   children: <MailIcon />,
   badgeContent: 7,
+};
+
+export const ShowZero = TemplateShowZero.bind({});
+ShowZero.args = {
+  children: <MailIcon />,
+  badgeContent: 0,
 };
