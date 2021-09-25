@@ -290,6 +290,8 @@ const Tooltip = ({
   themeColor,
   content,
   showArrow,
+  className,
+  ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const childrenRef = useRef();
@@ -340,6 +342,8 @@ const Tooltip = ({
           $childrenSize={childrenSize}
           $gap={12}
           $color={color}
+          className={className}
+          {...props}
         >
           {content}
           {showArrow && (
@@ -354,6 +358,10 @@ const Tooltip = ({
 };
 
 Tooltip.propTypes = {
+  /**
+   * 客製化樣式
+   */
+  className: PropTypes.string,
   /**
    * 是否出現箭頭
    */
@@ -372,11 +380,11 @@ Tooltip.propTypes = {
    */
   themeColor: PropTypes.oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
-   * 內容
+   * 提示文字
    */
   content: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   /**
-   * 內容
+   * 需要彈出提示字的子元件
    */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
 };
@@ -385,6 +393,7 @@ Tooltip.defaultProps = {
   themeColor: '#101010',
   placement: 'top',
   showArrow: true,
+  className: '',
 };
 
 export default Tooltip;
