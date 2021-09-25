@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import Tooltip from '../components/Tooltip';
 import Button from '../components/Button';
 import Switch from '../components/Switch';
@@ -34,7 +35,7 @@ const TemplateWithColorPicker = (args) => {
   const [pickedColor, setPickedColor] = useState(defaultColor);
 
   return (
-    <SpaceBetween>
+    <SpaceBetween style={{ height: 160 }}>
       <Tooltip
         {...args}
         themeColor={pickedColor}
@@ -55,7 +56,7 @@ const TemplateShowArrow = (args) => {
   const [showArrow, setShowArrow] = useState(true);
 
   return (
-    <SpaceBetween>
+    <SpaceBetween style={{ height: 160 }}>
       <Tooltip
         {...args}
         showArrow={showArrow}
@@ -75,9 +76,9 @@ const TemplateShowArrow = (args) => {
 const TemplatePlacement = (args) => (
   <PlacementWrapper>
     <Row>
-      <Tooltip {...args} placement="top-left"><Button variant="outlined">Top Left</Button></Tooltip>
-      <Tooltip {...args} placement="top"><Button variant="outlined">Top</Button></Tooltip>
-      <Tooltip {...args} placement="top-right"><Button variant="outlined">Top Right</Button></Tooltip>
+      <Tooltip {...args} placement="bottom-left"><Button variant="outlined">Bottom Left</Button></Tooltip>
+      <Tooltip {...args} placement="bottom"><Button variant="outlined">Bottom</Button></Tooltip>
+      <Tooltip {...args} placement="bottom-right"><Button variant="outlined">Bottom Right</Button></Tooltip>
     </Row>
     <SpaceBetween>
       <Tooltip {...args} placement="right-top"><Button variant="outlined">Right Top</Button></Tooltip>
@@ -92,11 +93,27 @@ const TemplatePlacement = (args) => (
       <Tooltip {...args} placement="left-bottom"><Button variant="outlined">Left Bottom</Button></Tooltip>
     </SpaceBetween>
     <Row>
-      <Tooltip {...args} placement="bottom-left"><Button variant="outlined">Bottom Left</Button></Tooltip>
-      <Tooltip {...args} placement="bottom"><Button variant="outlined">Bottom</Button></Tooltip>
-      <Tooltip {...args} placement="bottom-right"><Button variant="outlined">Bottom Right</Button></Tooltip>
+      <Tooltip {...args} placement="top-left"><Button variant="outlined">Top Left</Button></Tooltip>
+      <Tooltip {...args} placement="top"><Button variant="outlined">Top</Button></Tooltip>
+      <Tooltip {...args} placement="top-right"><Button variant="outlined">Top Right</Button></Tooltip>
     </Row>
   </PlacementWrapper>
+);
+
+const Template = (args) => (
+  <div style={{ display: 'flex', alignItems: 'center', height: 160 }}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      挑戰 iThome 鐵人賽
+      <Tooltip
+        {...args}
+        content="喚醒心中最強大的鐵人"
+      >
+        <span style={{ display: 'flex', alignItems: 'center', marginLeft: 4 }}>
+          <InfoOutlinedIcon style={{ cursor: 'pointer' }} />
+        </span>
+      </Tooltip>
+    </div>
+  </div>
 );
 
 const defaultArgs = {
@@ -109,8 +126,11 @@ const defaultArgs = {
   ),
 };
 
-export const Default = TemplatePlacement.bind({});
-Default.args = {
+export const Default = Template.bind({});
+Default.args = {};
+
+export const Placement = TemplatePlacement.bind({});
+Placement.args = {
   ...defaultArgs,
 };
 
