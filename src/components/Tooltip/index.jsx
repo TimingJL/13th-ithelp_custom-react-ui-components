@@ -34,12 +34,6 @@ const topLeftStyle = css`
     left: 12px;
     transform: translate(0%, 40%);
   }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
-  }
 `;
 
 const topRightStyle = css`
@@ -51,12 +45,6 @@ const topRightStyle = css`
     position: absolute;
     right: 12px;
     transform: translate(0%, 40%);
-  }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
   }
 `;
 
@@ -71,12 +59,6 @@ const bottomStyle = css`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
-  }
 `;
 
 const bottomLeftStyle = css`
@@ -89,12 +71,6 @@ const bottomLeftStyle = css`
     top: 0px;
     left: 12px;
     transform: translate(0%, -50%);
-  }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
   }
 `;
 
@@ -109,12 +85,6 @@ const bottomRightStyle = css`
     right: 12px;
     transform: translate(0%, -50%);
   }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
-  }
 `;
 
 const rightTopStyle = css`
@@ -127,12 +97,6 @@ const rightTopStyle = css`
     top: 12px;
     left: 0px;
     transform: translate(-50%, 0%);
-  }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
   }
 `;
 
@@ -147,12 +111,6 @@ const rightBottomStyle = css`
     left: 0px;
     transform: translate(-50%, 0%);
   }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
-  }
 `;
 
 const leftBottomStyle = css`
@@ -165,12 +123,6 @@ const leftBottomStyle = css`
     bottom: 12px;
     right: 0px;
     transform: translate(50%, 0%);
-  }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
   }
 `;
 
@@ -185,12 +137,6 @@ const leftTopStyle = css`
     right: 0px;
     transform: translate(50%, 0%);
   }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
-  }
 `;
 
 const leftStyle = css`
@@ -204,12 +150,6 @@ const leftStyle = css`
     right: 0px;
     transform: translate(50%, -50%);
   }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
-  }
 `;
 
 const rightStyle = css`
@@ -222,12 +162,6 @@ const rightStyle = css`
     top: 50%;
     left: 0px;
     transform: translate(-50%, -50%);
-  }
-  .tooltip__arrow-content {
-    width: 8px;
-    height: 8px;
-    transform: rotate(45deg);
-    background: ${(props) => props.$color};
   }
 `;
 
@@ -247,12 +181,10 @@ const placementStyleMap = {
 };
 
 const fadeIn = keyframes`
-  0% {
+  from {
     opacity: 0;
   }
-  50% {
-  }
-  100% {
+  to {
     opacity: 1;
   }
 `;
@@ -279,6 +211,13 @@ const TooltipWrapper = styled.div`
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
   animation: ${(props) => (props.$isVisible ? fadeIn : fadeOut)} .3s ease-in-out forwards;
   ${(props) => placementStyleMap[props.$placement] || placementStyleMap.top}
+
+  .tooltip__arrow-content {
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+    background: ${(props) => props.$color};
+  }
 `;
 
 /**
