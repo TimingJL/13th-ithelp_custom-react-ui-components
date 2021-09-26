@@ -35,7 +35,7 @@ Accordion.propTypes = {
    */
   isExpand: PropTypes.bool,
   /**
-   * 點擊事件
+   * 標題的點擊事件
    */
   onClick: PropTypes.func,
   /**
