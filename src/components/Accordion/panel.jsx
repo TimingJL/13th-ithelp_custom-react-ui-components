@@ -9,12 +9,12 @@ const StyledPanel = styled.div`
 `;
 
 const Panel = ({ panel, isExpand }) => {
-  const contentRef = useRef(null);
-  const scrollHeight = contentRef.current?.scrollHeight;
+  const panelRef = useRef(null);
+  const scrollHeight = panelRef.current?.scrollHeight;
 
   return (
     <StyledPanel
-      ref={contentRef}
+      ref={panelRef}
       className="accordion__panel"
       $maxHeight={isExpand ? scrollHeight : 0}
     >
