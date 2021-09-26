@@ -78,4 +78,4 @@ const TemplateAccordionGroup = (args) => {
 
 export const Default = Template.bind({});
 
-export const ShowSimpleAccordion = TemplateAccordionGroup.bind({});
+export const ShowSingleAccordion = TemplateAccordionGroup.bind({});
