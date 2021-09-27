@@ -50,13 +50,13 @@ const SpaceBetween = styled.div`
  */
 const Card = ({
   className, cover, variant,
-  children, actions, ...props
+  children, footer, ...props
 }) => (
   <StyledCard className={className} $variant={variant} {...props}>
     <Cover className="card__cover">{cover}</Cover>
     <SpaceBetween>
       {children}
-      {actions}
+      {footer}
     </SpaceBetween>
   </StyledCard>
 );
@@ -75,9 +75,9 @@ Card.propTypes = {
    */
   variant: PropTypes.oneOf(['vertical', 'horizontal', 'horizontal-reverse']),
   /**
-   * 卡片置底操作組
+   * 卡片置底頁尾
    */
-  actions: PropTypes.element,
+  footer: PropTypes.element,
   /**
    * 內容
    */
@@ -88,7 +88,7 @@ Card.defaultProps = {
   className: '',
   cover: null,
   variant: 'vertical',
-  actions: null,
+  footer: null,
   children: null,
 };
 

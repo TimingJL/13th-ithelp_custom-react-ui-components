@@ -53,7 +53,7 @@ const defaultArgs = {
       description="喚醒心中最強大的鐵人"
     />
   ),
-  actions: (
+  footer: (
     <Actions>
       <ThumbUpIcon />
       <ShareIcon />
