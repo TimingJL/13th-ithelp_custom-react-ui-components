@@ -62,11 +62,20 @@ const Card = ({
 );
 
 Card.propTypes = {
+  /**
+   * 客製化樣式
+   */
   className: PropTypes.string,
+  /**
+   * 卡片封面媒體
+   */
   cover: PropTypes.element,
+  /**
+   * 變化模式
+   */
   variant: PropTypes.oneOf(['vertical', 'horizontal', 'horizontal-reverse']),
   /**
-   * 操作按鈕
+   * 卡片置底操作組
    */
   actions: PropTypes.element,
   /**
