@@ -48,6 +48,9 @@ const Meta = ({
 );
 
 Meta.propTypes = {
+  /**
+   * 客製化樣式
+   */
   className: PropTypes.string,
   /**
    * 標題
@@ -58,7 +61,7 @@ Meta.propTypes = {
    */
   description: PropTypes.string,
   /**
-   * 內容
+   * 頭像圖片位置連結
    */
   avatarUrl: PropTypes.string,
 };
