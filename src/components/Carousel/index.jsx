@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {
+  useState, useEffect, useCallback, useRef,
+} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import ArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 
-const IMAGE_WIDTH = 600;
-
 const CarouselWrapper = styled.div`
   position: relative;
-  width: ${IMAGE_WIDTH}px;
+  width: ${(props) => props.$width}px;
   height: 400px;
 `;
 
@@ -79,7 +79,9 @@ const Dot = styled.div`
 const Carousel = ({
   className, dataSource, hasDots, hasControlArrow, autoplay,
 }) => {
+  const carouselRef = useRef();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageWidth, setImageWidth] = useState(600);
   const getIndexes = () => {
     const prevIndex = currentIndex - 1 < 0 ? dataSource.length - 1 : currentIndex - 1;
     const nextIndex = (currentIndex + 1) % dataSource.length;
@@ -89,7 +91,7 @@ const Carousel = ({
     };
   };
 
-  const makePosition = ({ itemIndex }) => (itemIndex - currentIndex) * IMAGE_WIDTH;
+  const makePosition = ({ itemIndex }) => (itemIndex - currentIndex) * imageWidth;
 
   const handleClickPrev = () => {
     const { prevIndex } = getIndexes();
@@ -101,6 +103,19 @@ const Carousel = ({
     setCurrentIndex(nextIndex);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
+
+  const handleUpdateCarouselWidth = () => {
+    const carouselWidth = carouselRef.current.clientWidth;
+    setImageWidth(carouselWidth);
+  };
+
+  useEffect(() => {
+    handleUpdateCarouselWidth();
+    window.addEventListener('resize', handleUpdateCarouselWidth);
+    return () => {
+      window.removeEventListener('resize', handleUpdateCarouselWidth);
+    };
+  }, []);
 
   useEffect(() => {
     let intervalId;
@@ -115,7 +130,11 @@ const Carousel = ({
   }, [autoplay, handleClickNext]);
 
   return (
-    <CarouselWrapper className={className}>
+    <CarouselWrapper
+      ref={carouselRef}
+      className={className}
+      $width={imageWidth}
+    >
       <ImageWrapper>
         {
           dataSource.map((imageUrl, index) => {
