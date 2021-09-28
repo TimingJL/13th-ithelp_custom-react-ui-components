@@ -25,9 +25,7 @@ const Image = styled.img`
   width: 100%;
   position: absolute;
   left: ${(props) => props.$left}px;
-  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
   transition: all 0.4s ease;
-  z-index: ${(props) => (props.$isCurrent ? 9 : 0)};
 `;
 
 const ControlButtons = styled.div`
@@ -137,20 +135,14 @@ const Carousel = ({
     >
       <ImageWrapper>
         {
-          dataSource.map((imageUrl, index) => {
-            const { prevIndex, nextIndex } = getIndexes();
-            const isVisible = [prevIndex, currentIndex, nextIndex].indexOf(index) > -1;
-            return (
-              <Image
-                key={imageUrl}
-                src={imageUrl}
-                alt=""
-                $left={makePosition({ itemIndex: index })}
-                $isVisible={isVisible}
-                $isCurrent={index === currentIndex}
-              />
-            );
-          })
+          dataSource.map((imageUrl, index) => (
+            <Image
+              key={imageUrl}
+              src={imageUrl}
+              alt=""
+              $left={makePosition({ itemIndex: index })}
+            />
+          ))
         }
       </ImageWrapper>
       {hasControlArrow && (
@@ -190,7 +182,7 @@ Carousel.propTypes = {
    */
   hasDots: PropTypes.bool,
   /**
-   * 是否顯示上一個、下一個箭頭按鈕
+   * 是否顯示上一個、下一個切換鍵
    */
   hasControlArrow: PropTypes.bool,
   /**
