@@ -74,12 +74,14 @@ const Dot = styled.div`
  * `Carousel` 是一個像旋轉木馬一樣會輪流轉的輪播元件。
  * 在一個內容空間有限的可視範圍中進行內容的輪播展示。通常適用於一組圖片或是卡片的輪播。
 */
-const Carousel = ({ className, imageList }) => {
+const Carousel = ({
+  className, dataSource, hasDots,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const getIndexes = () => {
-    const prevIndex = currentIndex - 1 < 0 ? imageList.length - 1 : currentIndex - 1;
-    const nextIndex = (currentIndex + 1) % imageList.length;
+    const prevIndex = currentIndex - 1 < 0 ? dataSource.length - 1 : currentIndex - 1;
+    const nextIndex = (currentIndex + 1) % dataSource.length;
 
     return {
       prevIndex, nextIndex,
@@ -114,7 +116,7 @@ const Carousel = ({ className, imageList }) => {
     <CarouselWrapper className={className}>
       <ImageWrapper>
         {
-          imageList.map((imageUrl, index) => {
+          dataSource.map((imageUrl, index) => {
             const { prevIndex, nextIndex } = getIndexes();
             const isVisible = [prevIndex, currentIndex, nextIndex].indexOf(index) > -1;
             return (
@@ -134,17 +136,19 @@ const Carousel = ({ className, imageList }) => {
         <ArrowLeft onClick={handleClickPrev} />
         <ArrowRight onClick={handleClickNext} />
       </ControlButtons>
-      <Dots>
-        {
-          [...Array(imageList.length).keys()].map((key, index) => (
-            <Dot
-              key={key}
-              $isCurrent={index === currentIndex}
-              onClick={() => setCurrentIndex(key)}
-            />
-          ))
-        }
-      </Dots>
+      {hasDots && (
+        <Dots>
+          {
+            [...Array(dataSource.length).keys()].map((key, index) => (
+              <Dot
+                key={key}
+                $isCurrent={index === currentIndex}
+                onClick={() => setCurrentIndex(key)}
+              />
+            ))
+          }
+        </Dots>
+      )}
     </CarouselWrapper>
   );
 };
@@ -157,12 +161,17 @@ Carousel.propTypes = {
   /**
    * 輪播資料
    */
-  imageList: PropTypes.arrayOf(PropTypes.string),
+  dataSource: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * 客製化樣式
+   */
+  hasDots: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
   className: '',
-  imageList: [],
+  dataSource: [],
+  hasDots: true,
 };
 
 export default Carousel;
