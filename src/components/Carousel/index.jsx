@@ -18,6 +18,7 @@ const ImageWrapper = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
+  background: black;
 `;
 
 const Image = styled.img`
@@ -50,7 +51,7 @@ const ControlButtons = styled.div`
 const Dots = styled.div`
   position: absolute;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   z-index: 10;
   left: 50%;
@@ -63,11 +64,12 @@ const Dots = styled.div`
 
 const Dot = styled.div`
   border-radius: 100%;
-  width: 8px;
-  height: 8px;
+  width: ${(props) => (props.$isCurrent ? 10 : 8)}px;
+  height: ${(props) => (props.$isCurrent ? 10 : 8)}px;
   border: 1px solid #FFF;
   background: ${(props) => (props.$isCurrent ? '#FFF' : 'none')};
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 `;
 
 /**
@@ -75,10 +77,9 @@ const Dot = styled.div`
  * 在一個內容空間有限的可視範圍中進行內容的輪播展示。通常適用於一組圖片或是卡片的輪播。
 */
 const Carousel = ({
-  className, dataSource, hasDots,
+  className, dataSource, hasDots, hasControlArrow,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const getIndexes = () => {
     const prevIndex = currentIndex - 1 < 0 ? dataSource.length - 1 : currentIndex - 1;
     const nextIndex = (currentIndex + 1) % dataSource.length;
@@ -132,10 +133,12 @@ const Carousel = ({
           })
         }
       </ImageWrapper>
-      <ControlButtons>
-        <ArrowLeft onClick={handleClickPrev} />
-        <ArrowRight onClick={handleClickNext} />
-      </ControlButtons>
+      {hasControlArrow && (
+        <ControlButtons>
+          <ArrowLeft onClick={handleClickPrev} />
+          <ArrowRight onClick={handleClickNext} />
+        </ControlButtons>
+      )}
       {hasDots && (
         <Dots>
           {
@@ -163,15 +166,20 @@ Carousel.propTypes = {
    */
   dataSource: PropTypes.arrayOf(PropTypes.string),
   /**
-   * 客製化樣式
+   * 是否顯示指示點
    */
   hasDots: PropTypes.bool,
+  /**
+   * 是否顯示上一個、下一個箭頭按鈕
+   */
+  hasControlArrow: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
   className: '',
   dataSource: [],
   hasDots: true,
+  hasControlArrow: true,
 };
 
 export default Carousel;
