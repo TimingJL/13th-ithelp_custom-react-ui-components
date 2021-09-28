@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -77,7 +77,7 @@ const Dot = styled.div`
  * 在一個內容空間有限的可視範圍中進行內容的輪播展示。通常適用於一組圖片或是卡片的輪播。
 */
 const Carousel = ({
-  className, dataSource, hasDots, hasControlArrow,
+  className, dataSource, hasDots, hasControlArrow, autoplay,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const getIndexes = () => {
@@ -96,10 +96,23 @@ const Carousel = ({
     setCurrentIndex(prevIndex);
   };
 
-  const handleClickNext = () => {
+  const handleClickNext = useCallback(() => {
     const { nextIndex } = getIndexes();
     setCurrentIndex(nextIndex);
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
+
+  useEffect(() => {
+    let intervalId;
+    if (autoplay) {
+      intervalId = setInterval(() => {
+        handleClickNext();
+      }, 3000);
+    }
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [autoplay, handleClickNext]);
 
   return (
     <CarouselWrapper className={className}>
@@ -161,6 +174,10 @@ Carousel.propTypes = {
    * 是否顯示上一個、下一個箭頭按鈕
    */
   hasControlArrow: PropTypes.bool,
+  /**
+   * 是否自動播放
+   */
+  autoplay: PropTypes.bool,
 };
 
 Carousel.defaultProps = {
@@ -168,6 +185,7 @@ Carousel.defaultProps = {
   dataSource: [],
   hasDots: true,
   hasControlArrow: true,
+  autoplay: false,
 };
 
 export default Carousel;
