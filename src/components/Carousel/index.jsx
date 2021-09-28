@@ -89,19 +89,7 @@ const Carousel = ({
     };
   };
 
-  const makePosition = ({ itemIndex }) => {
-    const { prevIndex, nextIndex } = getIndexes();
-    if (prevIndex === itemIndex) {
-      return -1 * IMAGE_WIDTH;
-    }
-    if (nextIndex === itemIndex) {
-      return IMAGE_WIDTH;
-    }
-    if (currentIndex === itemIndex) {
-      return 0;
-    }
-    return -1 * IMAGE_WIDTH;
-  };
+  const makePosition = ({ itemIndex }) => (itemIndex - currentIndex) * IMAGE_WIDTH;
 
   const handleClickPrev = () => {
     const { prevIndex } = getIndexes();
