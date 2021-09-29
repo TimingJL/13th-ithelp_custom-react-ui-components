@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const StyledTable = styled.div`
+const StyledTable = styled.table`
   display: inline-block;
   border-collapse: collapse;
   * {
