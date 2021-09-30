@@ -21,6 +21,9 @@ const InfiniteScrollWrapper = styled.div`
   overflow: auto;
 `;
 
+/**
+ * `Infinite scroll` 能在面對多筆資料時，讓捲軸滑動到底部時再載入下一頁面的資料。
+*/
 const InfiniteScroll = ({
   height, onScrollBottom, isLoading, children,
 }) => {
