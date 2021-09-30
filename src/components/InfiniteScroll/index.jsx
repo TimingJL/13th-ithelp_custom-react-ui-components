@@ -31,6 +31,8 @@ const InfiniteScroll = ({
     if (containerElem) {
       const scrollPos = containerElem.scrollTop + containerElem.clientHeight;
       const divHeight = containerElem.scrollHeight;
+
+      // 滾過的距離加上自己元素的高度，大於等於可滾動範圍的高度
       if ((scrollPos >= divHeight) && onScrollBottom) {
         onScrollBottom();
       }
@@ -54,9 +56,21 @@ const InfiniteScroll = ({
 };
 
 InfiniteScroll.propTypes = {
+  /**
+   * 元件高度
+   */
   height: PropTypes.number,
+  /**
+   * 內容
+   */
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  /**
+   * 載入中狀態
+   */
   isLoading: PropTypes.bool,
+  /**
+   * 滑動到底部的 callback
+   */
   onScrollBottom: PropTypes.func,
 };
 
