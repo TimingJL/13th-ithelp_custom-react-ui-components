@@ -14,7 +14,6 @@ const Loading = styled.div`
 const StyledCircularProgress = styled(CircularProgress)`
   color: ${(props) => (props.theme.color.primary)} !important;
   margin: 40px 0px;
-  visibility : ${(props) => (props.$isLoading ? 'visible' : 'hidden')};
 `;
 
 const InfiniteScrollWrapper = styled.div`
@@ -45,9 +44,11 @@ const InfiniteScroll = ({
       onScroll={handleOnScroll}
     >
       {children}
-      <Loading>
-        <StyledCircularProgress $isLoading={isLoading} />
-      </Loading>
+      {isLoading && (
+        <Loading>
+          <StyledCircularProgress />
+        </Loading>
+      )}
     </InfiniteScrollWrapper>
   );
 };
