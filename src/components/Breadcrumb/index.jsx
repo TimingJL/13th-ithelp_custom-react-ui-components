@@ -16,22 +16,31 @@ const Breadcrumb = ({ maxItems, routes, separator }) => (
     separator={separator}
   >
     {
-        routes.map((route) => (
-          <BreadcrumbItem
-            key={route.label}
-            label={route.label}
-            icon={route.icon}
-            to={route.to}
-          />
-        ))
-      }
+      routes.map((route) => (
+        <BreadcrumbItem
+          key={route.label}
+          label={route.label}
+          icon={route.icon}
+          to={route.to}
+        />
+      ))
+    }
   </Breadcrumbs>
 );
 
 Breadcrumb.propTypes = {
+  /**
+   * 麵包屑的路由資訊及設定
+   */
   // eslint-disable-next-line react/forbid-prop-types
   routes: PropTypes.array,
+  /**
+   * 分隔符號
+   */
   separator: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  /**
+   * 指定最大麵包屑數量，超過就折疊
+   */
   maxItems: PropTypes.number,
 };
 
