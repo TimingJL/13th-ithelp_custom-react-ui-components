@@ -33,6 +33,29 @@ const routes = [
   },
 ];
 
+const routesWithIcon = [
+  {
+    to: '/home',
+    label: '首頁',
+    icon: <HomeIcon />,
+  },
+  {
+    to: '/school',
+    label: '學校列表',
+    icon: <SchoolIcon />,
+  },
+  {
+    to: '/members',
+    label: '會員列表',
+    icon: <SupervisorAccountIcon />,
+  },
+  {
+    to: '/memberDetail',
+    label: '會員資料',
+    icon: <AssignmentIndIcon />,
+  },
+];
+
 const Template = (args) => <Breadcrumb {...args} />;
 
 const TemplateCustomNote = (args) => {
@@ -59,106 +82,22 @@ Default.args = {
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  routes: [
-    {
-      to: '/home',
-      label: '首頁',
-      icon: <HomeIcon />,
-    },
-    {
-      to: '/school',
-      label: '學校列表',
-      icon: <SchoolIcon />,
-    },
-    {
-      to: '/members',
-      label: '會員列表',
-      icon: <SupervisorAccountIcon />,
-    },
-    {
-      to: '/memberDetail',
-      label: '會員資料',
-      icon: <AssignmentIndIcon />,
-    },
-  ],
+  routes: routesWithIcon,
 };
 
 export const WithCustomSeparator = Template.bind({});
 WithCustomSeparator.args = {
   separator: '/',
-  routes: [
-    {
-      to: '/home',
-      label: '首頁',
-      icon: <HomeIcon />,
-    },
-    {
-      to: '/school',
-      label: '學校列表',
-      icon: <SchoolIcon />,
-    },
-    {
-      to: '/members',
-      label: '會員列表',
-      icon: <SupervisorAccountIcon />,
-    },
-    {
-      to: '/memberDetail',
-      label: '會員資料',
-      icon: <AssignmentIndIcon />,
-    },
-  ],
+  routes: routesWithIcon,
 };
 
 export const WithMaxItems = Template.bind({});
 WithMaxItems.args = {
   maxItems: 2,
-  routes: [
-    {
-      to: '/home',
-      label: '首頁',
-      icon: <HomeIcon />,
-    },
-    {
-      to: '/school',
-      label: '學校列表',
-      icon: <SchoolIcon />,
-    },
-    {
-      to: '/members',
-      label: '會員列表',
-      icon: <SupervisorAccountIcon />,
-    },
-    {
-      to: '/memberDetail',
-      label: '會員資料',
-      icon: <AssignmentIndIcon />,
-    },
-  ],
+  routes: routesWithIcon,
 };
 
 export const WithCustomNode = TemplateCustomNote.bind({});
 WithCustomNode.args = {
-  routes: [
-    {
-      to: '/home',
-      label: '首頁',
-      icon: <HomeIcon />,
-    },
-    {
-      to: '/school',
-      label: '學校列表',
-      icon: <SchoolIcon />,
-    },
-    {
-      to: '/members',
-      label: '會員列表',
-      icon: <SupervisorAccountIcon />,
-    },
-    {
-      to: '/memberDetail',
-      label: '會員資料',
-      icon: <AssignmentIndIcon />,
-    },
-  ],
+  routes: routesWithIcon,
 };
