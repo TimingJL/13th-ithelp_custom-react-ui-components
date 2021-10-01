@@ -40,14 +40,14 @@ const TemplateCustomNote = (args) => {
   return (
     <Breadcrumbs>
       {
-          withIconRoutes.map((route) => (
-            <Chip
-              key={route.label}
-              label={route.label}
-              icon={route.icon}
-            />
-          ))
-        }
+        withIconRoutes.map((route) => (
+          <Chip
+            key={route.label}
+            label={route.label}
+            icon={route.icon}
+          />
+        ))
+      }
     </Breadcrumbs>
   );
 };
