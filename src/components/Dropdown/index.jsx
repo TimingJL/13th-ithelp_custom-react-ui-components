@@ -148,7 +148,6 @@ const Dropdown = ({
   onClick, onClose,
 }) => {
   const childrenRef = useRef();
-  // const [isVisible, setIsVisible] = useState(false);
   const [childrenSize, setChildrenSize] = useState({
     width: 0,
     height: 0,
