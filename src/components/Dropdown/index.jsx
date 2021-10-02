@@ -125,7 +125,7 @@ const fadeOut = keyframes`
   }
 `;
 
-const TooltipWrapper = styled.div`
+const OverlayWrapper = styled.div`
   position: absolute;
   z-index: 999;
   top: ${(props) => props.$position.top}px;
@@ -201,7 +201,7 @@ const Dropdown = ({
         {children}
       </span>
       <Portal>
-        <TooltipWrapper
+        <OverlayWrapper
           data-dropdown-id="dropdown"
           $isOpen={isOpen}
           $position={position}
@@ -210,7 +210,7 @@ const Dropdown = ({
           $gap={12}
         >
           {overlay}
-        </TooltipWrapper>
+        </OverlayWrapper>
       </Portal>
     </>
   );
