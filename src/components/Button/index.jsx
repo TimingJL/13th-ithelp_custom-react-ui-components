@@ -58,7 +58,7 @@ const StyledButton = styled.button`
   outline: none;
   min-width: 100px;
   height: 36px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
