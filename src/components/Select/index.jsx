@@ -127,11 +127,29 @@ const Select = ({
 };
 
 Select.propTypes = {
+  /**
+   * 選項內容
+   */
   options: PropTypes.array,
+  /**
+   * 用來指定當前被選中的項目
+   */
   value: PropTypes.string,
+  /**
+   * 未選擇任何選項時顯示的 placeholder
+   */
   placeholder: PropTypes.string,
+  /**
+   * 是否禁用下拉選單
+   */
   isDisable: PropTypes.bool,
+  /**
+   * 資料是否正在載入中
+   */
   isLoading: PropTypes.bool,
+  /**
+   * 當選項被選中時會被調用
+   */
   onSelect: PropTypes.func,
 };
 
