@@ -155,19 +155,19 @@ const Drawer = ({
   children, isOpen, placement, onClose,
   animationDuration,
 }) => {
-  const [isDisplay, setIsDisplay] = useState(isOpen);
+  const [removeDOM, setRemoveDOM] = useState(!isOpen);
 
   useEffect(() => {
     if (isOpen) {
-      setIsDisplay(true);
+      setRemoveDOM(false);
     } else {
       setTimeout(() => {
-        setIsDisplay(false);
+        setRemoveDOM(true);
       }, (animationDuration + 100));
     }
   }, [animationDuration, isOpen]);
 
-  return isDisplay && (
+  return !removeDOM && (
     <Portal>
       <Mask
         $isOpen={isOpen}
