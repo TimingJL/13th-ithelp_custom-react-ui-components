@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const Portal = ({ children, customRootId }) => {
@@ -12,6 +13,10 @@ const Portal = ({ children, customRootId }) => {
     document.body.appendChild(divDOM);
     portalRoot = divDOM;
   }
+
+  useEffect(() => () => {
+    portalRoot.parentElement.removeChild(portalRoot);
+  }, [portalRoot]);
 
   return ReactDOM.createPortal(
     children,
