@@ -1,5 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState, useRef, useEffect, useCallback,
+} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -37,7 +39,7 @@ const TabGroup = ({
     setActiveIndex(tabIndex);
   };
 
-  useEffect(() => {
+  const handleUpdateTabAttr = useCallback(() => {
     const tabGroupCurrent = tabGroupRef.current;
     const tabNumber = React.Children.count(children);
 
@@ -49,6 +51,14 @@ const TabGroup = ({
         })),
     );
   }, [children]);
+
+  useEffect(() => {
+    handleUpdateTabAttr();
+    window.addEventListener('resize', handleUpdateTabAttr);
+    return () => {
+      window.removeEventListener('resize', handleUpdateTabAttr);
+    };
+  }, [handleUpdateTabAttr]);
 
   return (
     <TabsScrollerWrapper className={className} {...props}>
