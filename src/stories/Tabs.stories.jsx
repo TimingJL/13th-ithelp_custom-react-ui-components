@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 import Tabs from '../components/Tabs';
 
@@ -6,6 +7,14 @@ export default {
   title: '導航元件 /Tabs',
   component: Tabs,
 };
+
+const StyledTabs = styled(Tabs)`
+  border-bottom: 1px solid #EEE;
+`;
+
+const TabPanel = styled.div`
+  padding: 20px 0px;
+`;
 
 const tabOptions = [
   {
@@ -27,14 +36,19 @@ const tabOptions = [
 ];
 
 const Template = () => {
-  const [selectedValue, setSelectedValue] = useState();
+  const [selectedValue, setSelectedValue] = useState(tabOptions[0].value);
 
   return (
-    <Tabs
-      value={selectedValue}
-      options={tabOptions}
-      onChange={(value) => setSelectedValue(value)}
-    />
+    <>
+      <StyledTabs
+        value={selectedValue}
+        options={tabOptions}
+        onChange={(value) => setSelectedValue(value)}
+      />
+      <TabPanel>
+        {`TabPanel of #${selectedValue}`}
+      </TabPanel>
+    </>
   );
 };
 
