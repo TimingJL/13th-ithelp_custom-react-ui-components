@@ -1,7 +1,11 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+
+const activeStyle = css`
+  color: ${(props) => props.$color} !important;
+`;
 
 const StyledTab = styled.div`
   display: flex;
@@ -13,7 +17,7 @@ const StyledTab = styled.div`
   &:hover {
     background: #eeeeee55;
   }
-  color: ${(props) => (props.$isActive ? props.$color : 'currentColor')};
+  ${(props) => (props.$isActive ? activeStyle : null)}
 `;
 
 const Tab = ({
@@ -32,7 +36,7 @@ const Tab = ({
 );
 
 Tab.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   isActive: PropTypes.bool,
   value: PropTypes.string,
   color: PropTypes.string,

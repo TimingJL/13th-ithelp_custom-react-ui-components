@@ -30,13 +30,7 @@ const TabGroup = ({
 }) => {
   const tabGroupRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [tabWidthList, setTabWidthList] = useState([]);
-  let indicatorLeft = 0;
-  tabWidthList.forEach((tabWidth, tabIndex) => {
-    if (tabIndex < activeIndex) {
-      indicatorLeft += tabWidth;
-    }
-  });
+  const [tabAttrList, setTabAttrList] = useState([]);
 
   const handleClickTab = ({ tabValue, tabIndex }) => {
     onChange(tabValue);
@@ -47,9 +41,12 @@ const TabGroup = ({
     const tabGroupCurrent = tabGroupRef.current;
     const tabNumber = React.Children.count(children);
 
-    setTabWidthList(
+    setTabAttrList(
       [...Array(tabNumber).keys()]
-        .map((tabIndex) => tabGroupCurrent.children[tabIndex].offsetWidth),
+        .map((tabIndex) => ({
+          width: tabGroupCurrent.children[tabIndex].offsetWidth,
+          left: tabGroupCurrent.children[tabIndex].offsetLeft,
+        })),
     );
   }, [children]);
 
@@ -68,8 +65,8 @@ const TabGroup = ({
         ))}
       </StyledTabGroup>
       <Indicator
-        $left={indicatorLeft}
-        $width={tabWidthList[activeIndex]}
+        $left={tabAttrList[activeIndex]?.left || 0}
+        $width={tabAttrList[activeIndex]?.width || 0}
         $color={color}
       />
     </TabsScrollerWrapper>
