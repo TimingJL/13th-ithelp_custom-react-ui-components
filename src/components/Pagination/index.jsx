@@ -1,52 +1,17 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 
-// import { usePagination } from '@material-ui/lab/Pagination';
-// import { makeStyles } from '@material-ui/core/styles';
-import MuiPagination from '@material-ui/lab/Pagination';
-// const useStyles = makeStyles({
-//   ul: {
-//     listStyle: 'none',
-//     padding: 0,
-//     margin: 0,
-//     display: 'flex',
-//   },
-// });
-
+/**
+ * `Pagination` 是一個分頁元件，當頁面中一次要載入過多的資料時，載入及渲染將會花費更多的時間，
+ * 因此，考慮分批載入資料的時候，需要分頁元件來幫助我們在不同頁面之間切換。
+*/
 const Pagination = () => (
   <div>
     pagination
-    <MuiPagination
-      count={9}
-      defaultPage={1}
-      siblingCount={0}
-      // boundaryCount={0}
-    />
-    {/* <ul className={classes.ul}>
-        {items.map(({
-          page, type, selected, ...item
-        }, index) => {
-          let children = null;
-
-          if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-            children = '…';
-          } else if (type === 'page') {
-            children = (
-              <button type="button" style={{ fontWeight: selected ? 'bold' : undefined }} {...item}>
-                {page}
-              </button>
-            );
-          } else {
-            children = (
-              <button type="button" {...item}>
-                {type}
-              </button>
-            );
-          }
-
-          // eslint-disable-next-line react/no-array-index-key
-          return <li key={index}>{children}</li>;
-        })}
-      </ul> */}
   </div>
 );
+
+Pagination.propTypes = {};
+Pagination.defaultProps = {};
+
 export default Pagination;
