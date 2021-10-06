@@ -47,7 +47,9 @@ const Mask = styled.div`
  * `Spin` 是一個載入狀態元件，當頁面正在處理非同步行為，
  * 或需要讓用戶等待的作業時，用來顯示以緩解用戶等待的焦慮。
 */
-const Spin = ({ indicator, isLoading, children }) => {
+const Spin = ({
+  indicator, isLoading, children, ...props
+}) => {
   const indicatorRef = useRef();
   const [indicatorSize, setIndicatorSize] = useState({
     width: 0,
@@ -64,13 +66,13 @@ const Spin = ({ indicator, isLoading, children }) => {
 
   if (!children) {
     return (
-      <StyledSpin>
+      <StyledSpin {...props}>
         {indicator}
       </StyledSpin>
     );
   }
   return (
-    <SpinContainer>
+    <SpinContainer {...props}>
       {children}
       {isLoading && (
         <>
@@ -90,6 +92,10 @@ const Spin = ({ indicator, isLoading, children }) => {
 
 Spin.propTypes = {
   /**
+   * 客製化樣式
+   */
+  className: PropTypes.string,
+  /**
    * 自定義載入符號
   */
   indicator: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -104,6 +110,7 @@ Spin.propTypes = {
 };
 
 Spin.defaultProps = {
+  className: '',
   indicator: <CircularProgress />,
   isLoading: false,
   children: '',
