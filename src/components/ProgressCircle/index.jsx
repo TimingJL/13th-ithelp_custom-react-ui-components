@@ -121,21 +121,21 @@ const ProgressCircle = ({
           xmlns="http://www.w3.org/2000/svg"
         >
           {strokeColor && (
-          <defs>
-            <linearGradient
-              id="linearGradient"
-            >
-              {
-                Object.keys(strokeColor || {}).map((colorKey) => (
-                  <stop
-                    key={colorKey}
-                    offset={colorKey}
-                    stopColor={strokeColor[colorKey]}
-                  />
-                ))
-              }
-            </linearGradient>
-          </defs>
+            <defs>
+              <linearGradient
+                id="linearGradient"
+              >
+                {
+                  Object.keys(strokeColor || {}).map((colorKey) => (
+                    <stop
+                      key={colorKey}
+                      offset={colorKey}
+                      stopColor={strokeColor[colorKey]}
+                    />
+                  ))
+                }
+              </linearGradient>
+            </defs>
           )}
           <circle
             className="progress-circle__rail"
@@ -144,13 +144,13 @@ const ProgressCircle = ({
             cy={size / 2}
           />
           {value > 0 && (
-          <circle
-            className="progress-circle__track"
-            r={radius}
-            cx={size / 2}
-            cy={size / 2}
-            strokeLinecap="round"
-          />
+            <circle
+              className="progress-circle__track"
+              r={radius}
+              cx={size / 2}
+              cy={size / 2}
+              strokeLinecap="round"
+            />
           )}
         </svg>
       </span>
