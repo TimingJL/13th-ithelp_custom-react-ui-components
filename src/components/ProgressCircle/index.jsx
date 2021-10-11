@@ -27,7 +27,7 @@ const StyledProgressCircle = styled.div`
   }
 
   circle {
-    stroke-width: ${(props) => props.$borderWidth}px;
+    stroke-width: ${(props) => props.$strokeWidth}px;
     fill: transparent;
   }
 
@@ -85,8 +85,8 @@ const ProgressCircle = ({
   const [size, setSize] = useState(0);
   const { makeColor } = useColor();
   const color = makeColor({ themeColor });
-  const defaultBorderWidth = size * 0.08;
-  const radius = (size - defaultBorderWidth) / 2;
+  const defaultStrokeWidth = size * 0.08;
+  const radius = (size - defaultStrokeWidth) / 2;
   const perimeter = radius * 2 * Math.PI; // 圓周長
   const argLength = perimeter * (formatValue(value) / 100); // 弧長
 
@@ -108,7 +108,7 @@ const ProgressCircle = ({
       ref={progressCircleRef}
       className={className}
       $color={color}
-      $borderWidth={defaultBorderWidth}
+      $strokeWidth={defaultStrokeWidth}
       $argLength={argLength}
       $isClockwise={isClockwise}
       $strokeColor={strokeColor}
@@ -126,11 +126,11 @@ const ProgressCircle = ({
                 id="linearGradient"
               >
                 {
-                  Object.keys(strokeColor || {}).map((colorKey) => (
+                  Object.keys(strokeColor || {}).map((offset) => (
                     <stop
-                      key={colorKey}
-                      offset={colorKey}
-                      stopColor={strokeColor[colorKey]}
+                      key={offset}
+                      offset={offset}
+                      stopColor={strokeColor[offset]}
                     />
                   ))
                 }
