@@ -41,6 +41,11 @@ const ModalWrapper = styled.div`
   transform: translateX(-50%);
 `;
 
+/**
+ * `Modal` 元件為彈出相關元件提供了重要的基礎建設，
+ * 例如 `對話框(Dialog)`、`彈出提示框(Popovers)`、`菜單(Menu)`、`抽屜(Drawer)`...等等元件。
+ * 其使用時機是當系統流程當中需要用戶處理額外事務，但又不希望跳轉頁面以打斷目前工作流程時，提供一個彈出互動框解決方案。
+*/
 const Modal = ({
   isOpen,
   onClose,
