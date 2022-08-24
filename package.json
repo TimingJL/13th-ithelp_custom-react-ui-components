@@ -7,6 +7,14 @@
     "dist",
     "README.md"
   ],
+  "keywords": [
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "frontend",
+    "ui"
+  ],
   "homepage": "http://timingjl.github.io/13th-ithelp_custom-react-ui-components",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
