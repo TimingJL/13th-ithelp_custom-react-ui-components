@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import Upload from '../components/Upload';
-import Button from '../components/Button';
+import Upload from '../lib/components/Upload';
+import Button from '../lib/components/Button';
 
 export default {
   title: '數據輸入元件/Upload',

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Accordion from '../components/Accordion';
+import Accordion from '../lib/components/Accordion';
 
 export default {
   title: '數據展示元件/Accordion',

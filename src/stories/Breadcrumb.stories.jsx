@@ -5,9 +5,9 @@ import SchoolIcon from '@material-ui/icons/School';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
-import Breadcrumb from '../components/Breadcrumb';
-import Chip from '../components/Chip';
-import Breadcrumbs from '../components/Breadcrumb/Breadcrumbs';
+import Breadcrumb from '../lib/components/Breadcrumb';
+import Chip from '../lib/components/Chip';
+import Breadcrumbs from '../lib/components/Breadcrumb/Breadcrumbs';
 
 export default {
   title: '導航元件/Breadcrumb',

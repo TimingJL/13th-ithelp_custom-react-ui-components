@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Pagination from '../components/Pagination';
-import SimplePagination from '../components/Pagination/simple';
+import Pagination from '../lib/components/Pagination';
+import SimplePagination from '../lib/components/Pagination/simple';
 
 export default {
   title: '導航元件/Pagination',

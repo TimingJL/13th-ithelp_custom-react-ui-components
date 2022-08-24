@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
-import TextField from '../components/TextField';
+import TextField from '../lib/components/TextField';
 
 export default {
   title: '數據輸入元件/TextField',

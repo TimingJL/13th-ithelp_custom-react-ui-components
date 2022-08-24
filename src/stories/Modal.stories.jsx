@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Modal from '../components/Modal';
-import Dialog from '../components/Dialog';
-import Button from '../components/Button';
+import Modal from '../lib/components/Modal';
+import Dialog from '../lib/components/Dialog';
+import Button from '../lib/components/Button';
 
 export default {
   title: '反饋元件/Modal',

@@ -1,7 +1,7 @@
 import React from 'react';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
-import Button from '../components/Button';
+import Button from '../lib/components/Button';
 
 export default {
   title: '數據輸入元件/Button',

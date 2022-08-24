@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Button from '../components/Button';
-import Drawer from '../components/Drawer';
+import Button from '../lib/components/Button';
+import Drawer from '../lib/components/Drawer';
 
 export default {
   title: '導航元件/Drawer',

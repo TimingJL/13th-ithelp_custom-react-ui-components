@@ -5,7 +5,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 
-import Tabs from '../components/Tabs';
+import Tabs from '../lib/components/Tabs';
 
 export default {
   title: '導航元件 /Tabs',

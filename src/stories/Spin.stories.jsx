@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import Spin from '../components/Spin';
-import Switch from '../components/Switch';
-import FormControl from '../components/FormControl';
-import { FaSpinner } from '../components/Icons/FaSpinner';
+import Spin from '../lib/components/Spin';
+import Switch from '../lib/components/Switch';
+import FormControl from '../lib/components/FormControl';
+import { FaSpinner } from '../lib/components/Icons/FaSpinner';
 
 export default {
   title: '反饋元件/Spin',

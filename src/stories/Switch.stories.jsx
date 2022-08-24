@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Switch from '../components/Switch';
+import Switch from '../lib/components/Switch';
 
 const SwitchGroup = styled.div`
   display: flex;

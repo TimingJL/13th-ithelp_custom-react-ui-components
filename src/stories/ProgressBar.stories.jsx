@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import ProgressBar from '../components/ProgressBar';
-import Button from '../components/Button';
+import ProgressBar from '../lib/components/ProgressBar';
+import Button from '../lib/components/Button';
 
 export default {
   title: '反饋元件/ProgressBar',

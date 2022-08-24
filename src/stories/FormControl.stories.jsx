@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import FormControl from '../components/FormControl';
-import TextField from '../components/TextField';
-import Radio from '../components/Radio';
-import Switch from '../components/Switch';
+import FormControl from '../lib/components/FormControl';
+import TextField from '../lib/components/TextField';
+import Radio from '../lib/components/Radio';
+import Switch from '../lib/components/Switch';
 
 export default {
   title: '數據輸入元件/FormControl',

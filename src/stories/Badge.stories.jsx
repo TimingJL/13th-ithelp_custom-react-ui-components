@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import MailIcon from '@material-ui/icons/Mail';
-import Badge from '../components/Badge';
-import TextField from '../components/TextField';
-import Switch from '../components/Switch';
+import Badge from '../lib/components/Badge';
+import TextField from '../lib/components/TextField';
+import Switch from '../lib/components/Switch';
 
 export default {
   title: '數據展示元件/Badge',

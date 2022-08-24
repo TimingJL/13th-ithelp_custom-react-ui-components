@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Carousel from '../components/Carousel';
-import Switch from '../components/Switch';
+import Carousel from '../lib/components/Carousel';
+import Switch from '../lib/components/Switch';
 
 export default {
   title: '數據展示元件/Carousel',

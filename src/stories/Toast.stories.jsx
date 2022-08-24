@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Toast, { message } from '../components/Toast';
-import Button from '../components/Button';
+import Toast, { message } from '../lib/components/Toast';
+import Button from '../lib/components/Button';
 
 export default {
   title: '反饋元件/Toast',

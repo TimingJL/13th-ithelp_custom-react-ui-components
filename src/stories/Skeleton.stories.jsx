@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Skeleton from '../components/Skeleton';
+import Skeleton from '../lib/components/Skeleton';
 
 export default {
   title: '反饋元件/Skeleton',

@@ -2,8 +2,8 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 
-import InfiniteScroll from '../components/InfiniteScroll';
-import ListItem from '../components/InfiniteScroll/ListItem';
+import InfiniteScroll from '../lib/components/InfiniteScroll';
+import ListItem from '../lib/components/InfiniteScroll/ListItem';
 
 export default {
   title: '數據展示元件/InfiniteScroll',

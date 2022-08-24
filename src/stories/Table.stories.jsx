@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Table from '../components/Table';
-import Button from '../components/Button';
+import Table from '../lib/components/Table';
+import Button from '../lib/components/Button';
 
 export default {
   title: '數據展示元件/Table',

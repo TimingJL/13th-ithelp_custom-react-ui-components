@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import { theme } from 'theme/index.js';
+import { theme } from 'lib/theme/index.js';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

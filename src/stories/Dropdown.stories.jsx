@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Dropdown from '../components/Dropdown';
-import Button from '../components/Button';
+import Dropdown from '../lib/components/Dropdown';
+import Button from '../lib/components/Button';
 
 export default {
   title: '導航元件/Dropdown',

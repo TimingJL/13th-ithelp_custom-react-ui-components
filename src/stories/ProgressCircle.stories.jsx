@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import ProgressCircle from '../components/ProgressCircle';
+import ProgressCircle from '../lib/components/ProgressCircle';
 
 export default {
   title: '反饋元件/ProgressCircle',

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
 
-import Chip from '../components/Chip';
+import Chip from '../lib/components/Chip';
 
 export default {
   title: '數據展示元件/Chip',

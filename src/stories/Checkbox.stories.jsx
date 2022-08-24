@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Checkbox from '../components/Checkbox';
-import Button from '../components/Button';
+import Checkbox from '../lib/components/Checkbox';
+import Button from '../lib/components/Button';
 
 export default {
   title: '數據輸入元件/Checkbox',

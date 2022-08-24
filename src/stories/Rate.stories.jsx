@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SentimentVerySatisfiedOutlinedIcon from '@material-ui/icons/SentimentVerySatisfiedOutlined';
 
-import Rate from '../components/Rate';
+import Rate from '../lib/components/Rate';
 
 export default {
   title: '數據輸入元件/Rate',

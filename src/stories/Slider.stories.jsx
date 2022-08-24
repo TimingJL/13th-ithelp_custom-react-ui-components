@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import Slider, { CustomSlider } from '../components/Slider';
+import Slider, { CustomSlider } from '../lib/components/Slider';
 
 export default {
   title: '數據輸入元件/Slider',

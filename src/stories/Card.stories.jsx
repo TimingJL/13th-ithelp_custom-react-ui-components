@@ -5,8 +5,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import Card from '../components/Card';
-import Meta from '../components/Card/Meta';
+import Card from '../lib/components/Card';
+import Meta from '../lib/components/Card/Meta';
 
 export default {
   title: '數據展示元件/Card',

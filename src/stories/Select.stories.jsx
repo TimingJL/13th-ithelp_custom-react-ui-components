@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Select from '../components/Select';
+import Select from '../lib/components/Select';
 
 export default {
   title: '導航元件/Select',

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import Tooltip from '../components/Tooltip';
-import Button from '../components/Button';
-import Switch from '../components/Switch';
+import Tooltip from '../lib/components/Tooltip';
+import Button from '../lib/components/Button';
+import Switch from '../lib/components/Switch';
 
 export default {
   title: '數據展示元件/Tooltip',
