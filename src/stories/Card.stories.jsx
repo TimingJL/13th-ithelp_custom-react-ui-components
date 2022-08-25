@@ -44,7 +44,7 @@ const TemplateVariant = (args) => (
 
 const defaultArgs = {
   cover: (
-    <img src="https://ithelp.ithome.com.tw/static/2021ironman/event/img/fb.jpg" alt="" />
+    <img src="https://ithelp.ithome.com.tw/static/2021ironman/event/img/fb.jpg" alt="" style={{ objectFit: 'cover' }} />
   ),
   children: (
     <Meta

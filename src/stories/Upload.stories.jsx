@@ -4,6 +4,12 @@ import styled from 'styled-components';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+
+import birdImg from './assets/bird.jpeg';
+import duckImg from './assets/duck.jpeg';
+import eagleImg from './assets/eagle.jpeg';
+import frogImg from './assets/frog.jpeg';
+
 import Upload from '../components/Upload';
 import Button from '../components/Button';
 
@@ -187,7 +193,7 @@ const TemplatePreview = (args) => {
           重設
         </Button>
       </SpaceBetween>
-      {imageSrc && <img src={imageSrc} alt="" style={{ marginTop: 20 }} />}
+      {imageSrc && <img src={imageSrc} alt="" style={{ marginTop: 20, objectFit: 'cover' }} />}
     </div>
   );
 };
@@ -279,19 +285,19 @@ const TemplatePictureWall = (args) => {
   const [fileList, setFileList] = useState([
     {
       id: 0,
-      imageUrl: 'https://python-ecw.com/wp-content/uploads/2020/06/image.png',
+      imageUrl: birdImg,
     },
     {
       id: 1,
-      imageUrl: 'https://dimin.net/software/panojs/IMG_7474-7511/256_005_000_000.jpg',
+      imageUrl: duckImg,
     },
     {
       id: 2,
-      imageUrl: 'https://m.media-amazon.com/images/I/71VNNCJlnhL._CR204,0,1224,1224_UX256.jpg',
+      imageUrl: eagleImg,
     },
     {
       id: 3,
-      imageUrl: 'https://up.quizlet.com/fjrfh-Q2BsH-256s.jpg',
+      imageUrl: frogImg,
     },
   ]);
 
@@ -320,7 +326,7 @@ const TemplatePictureWall = (args) => {
       {
         fileList.map((file) => (
           <PictureItem key={file.id}>
-            <img src={file.imageUrl} alt="" width={150} height={150} />
+            <img src={file.imageUrl} alt="" width={150} height={150} style={{ objectFit: 'cover' }} />
             <DeleteButtonMask
               className="picture-item__delete-button"
               onClick={() => handleDeleteItem(file.id)}

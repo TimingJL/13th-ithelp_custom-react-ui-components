@@ -4,6 +4,11 @@ import styled from 'styled-components';
 import Carousel from '../components/Carousel';
 import Switch from '../components/Switch';
 
+import birdImg from './assets/bird.jpeg';
+import duckImg from './assets/duck.jpeg';
+import eagleImg from './assets/eagle.jpeg';
+import frogImg from './assets/frog.jpeg';
+
 export default {
   title: '數據展示元件/Carousel',
   component: Carousel,
@@ -63,7 +68,5 @@ const TemplateControls = (args) => {
 
 export const Default = TemplateControls.bind({});
 Default.args = {
-  dataSource: [...Array(5).keys()].map((key) => (
-    `https://picsum.photos/id/${130 + key}/600/400`
-  )),
+  dataSource: [birdImg, duckImg, eagleImg, frogImg],
 };
