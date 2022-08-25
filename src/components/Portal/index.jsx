@@ -15,7 +15,7 @@ const Portal = ({ children, customRootId }) => {
   }
 
   useEffect(() => () => {
-    portalRoot.parentElement.removeChild(portalRoot);
+    portalRoot?.parentElement?.removeChild(portalRoot);
   }, [portalRoot]);
 
   return ReactDOM.createPortal(
