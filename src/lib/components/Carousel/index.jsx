@@ -26,6 +26,7 @@ const Image = styled.img`
   position: absolute;
   left: ${(props) => props.$left}px;
   transition: all 0.4s ease;
+  object-fit: cover;
 `;
 
 const ControlButtons = styled.div`

@@ -103,7 +103,7 @@ const Toast = ({
     setTimeout(() => {
       const currentDOM = toastRef.current;
       const parentDOM = currentDOM.parentElement;
-      parentDOM.parentElement.removeChild(parentDOM);
+      parentDOM?.parentElement?.removeChild(parentDOM);
     }, duration + 200);
   }, [duration]);
 

@@ -38,7 +38,7 @@ const Meta = ({
 }) => (
   <StyledMeta className={className}>
     <Avatar>
-      <img src={avatarUrl} alt="" />
+      <img src={avatarUrl} alt="" style={{ objectFit: 'cover' }} />
     </Avatar>
     <Content>
       <div className="meta__title">{title}</div>
