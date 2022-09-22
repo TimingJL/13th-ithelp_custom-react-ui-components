@@ -72,9 +72,10 @@ const StyledButton = styled.button`
   &:active {
     opacity: 0.7;
   }
-
   ${(props) => variantMap[props.$variant] || variantMap.primary}
-  ${(props) => (props.$isDisabled ? disabledStyle : null)}
+  &:disabled {
+    ${disabledStyle}
+  }
 `;
 
 /**
@@ -101,7 +102,7 @@ const Button = ({
       className={className}
       $btnColor={btnColor}
       $variant={variant}
-      $isDisabled={isDisabled}
+      disabled={isDisabled}
       onClick={isDisabled ? null : onClick}
       {...props}
     >
