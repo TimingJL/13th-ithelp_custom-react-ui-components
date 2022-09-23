@@ -67,14 +67,9 @@ const Switch = ({
   const labelRef = useRef(null);
   const { makeColor } = useColor();
   const [labelWidth, setLabelWidth] = useState(0);
-  const [checked, setChecked] = useState(isChecked || false);
   const thumbSize = size === 'small' ? 12 : 18;
   const switchWidth = thumbSize + labelWidth;
-  const switchColor = makeColor({ themeColor, isDisabled: !checked });
-
-  const handleClickSwitch = () => {
-    setChecked((prev) => !prev);
-  };
+  const switchColor = makeColor({ themeColor, isDisabled: !isChecked });
 
   useEffect(() => {
     const minLabelSize = thumbSize * 1.2;
@@ -84,22 +79,17 @@ const Switch = ({
     }
   }, [labelRef?.current?.clientWidth, thumbSize]);
 
-  useEffect(() => {
-    onChange(checked);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checked]);
-
   return (
     <SwitchButton
       $switchWidth={switchWidth}
       $thumbSize={thumbSize}
       $switchColor={switchColor}
       $isDisabled={isDisabled}
-      onClick={isDisabled ? null : handleClickSwitch}
+      onClick={isDisabled ? null : onChange}
       {...props}
     >
       <Thumb
-        $isChecked={checked}
+        $isChecked={isChecked}
         $thumbSize={thumbSize}
         $switchWidth={switchWidth}
       />
@@ -108,10 +98,10 @@ const Switch = ({
         $padding={thumbSize / 3}
         $labelWidth={labelWidth}
         $switchWidth={switchWidth}
-        $isChecked={checked}
+        $isChecked={isChecked}
       >
         {
-          checked
+          isChecked
             ? checkedChildren
             : unCheckedChildren
         }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -19,47 +20,59 @@ export default {
   },
 };
 
-const Template = (args) => <Switch {...args} />;
-
-export const Default = Template.bind({});
-
-export const CustomColor = Template.bind({});
-CustomColor.args = {
-  isChecked: true,
-  themeColor: '#ffc107',
+export const Default = () => {
+  const [isChecked, setIsChecked] = React.useState(false);
+  return <Switch isChecked={isChecked} onChange={() => setIsChecked((prev) => !prev)} />;
 };
 
-export const DisabledSwitch = Template.bind({});
-DisabledSwitch.args = {
-  isChecked: true,
-  isDisabled: true,
+export const CustomColor = () => {
+  const [isChecked, setIsChecked] = React.useState(true);
+  return <Switch isChecked={isChecked} onChange={() => setIsChecked((prev) => !prev)} themeColor="#ffc107" />;
 };
 
-const TemplateWithDiffSize = (args) => (
-  <SwitchGroup>
-    <Switch
-      size="small"
-      {...args}
-    />
-    <Switch {...args} />
-  </SwitchGroup>
-);
+export const DisabledSwitch = () => {
+  const [isChecked, setIsChecked] = React.useState(false);
+  return (
+    <div style={{ display: 'flex', gap: '24px' }}>
+      <Switch isChecked={false} isDisabled onChange={() => setIsChecked((prev) => !prev)} />
+      <Switch isChecked isDisabled onChange={() => setIsChecked((prev) => !prev)} />
+    </div>
+  );
+};
 
-export const SwitchWithSize = TemplateWithDiffSize.bind({});
+export const SwitchWithSize = () => {
+  const [isChecked, setIsChecked] = React.useState(false);
+  return (
+    <SwitchGroup>
+      <Switch
+        size="small"
+        isChecked={isChecked}
+        onChange={() => setIsChecked((prev) => !prev)}
+      />
+      <Switch
+        isChecked={isChecked}
+        onChange={() => setIsChecked((prev) => !prev)}
+      />
+    </SwitchGroup>
+  );
+};
 
-const TemplateWithLabel = (args) => (
-  <SwitchGroup>
-    <Switch
-      checkedChildren="開啟"
-      unCheckedChildren="關閉"
-      {...args}
-    />
-    <Switch
-      checkedChildren="開啟一個長度彈性的 Switch"
-      unCheckedChildren="關閉一個長度彈性的 Switch"
-      {...args}
-    />
-  </SwitchGroup>
-);
-
-export const SwitchWithChildrenLabel = TemplateWithLabel.bind({});
+export const SwitchWithChildrenLabel = (args) => {
+  const [isChecked, setIsChecked] = React.useState(false);
+  return (
+    <SwitchGroup>
+      <Switch
+        checkedChildren="開啟"
+        unCheckedChildren="關閉"
+        isChecked={isChecked}
+        onChange={() => setIsChecked((prev) => !prev)}
+      />
+      <Switch
+        checkedChildren="開啟一個長度彈性的 Switch"
+        unCheckedChildren="關閉一個長度彈性的 Switch"
+        isChecked={isChecked}
+        onChange={() => setIsChecked((prev) => !prev)}
+      />
+    </SwitchGroup>
+  );
+};
