@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -32,28 +32,21 @@ const StyledItem = styled.div`
  * 因此，考慮分批載入資料的時候，需要分頁元件來幫助我們在不同頁面之間切換。
 */
 const Pagination = ({
-  defaultCurrent,
+  page,
   pageSize,
   total,
   onChange,
 }) => {
   const {
-    current,
     items,
     handleClickNext,
     handleClickPrev,
   } = usePagination({
-    defaultCurrent,
+    page,
     pageSize,
     total,
+    onChange,
   });
-
-  useEffect(() => {
-    onChange({
-      current,
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
 
   return (
     <StyledPagination>
@@ -85,14 +78,14 @@ const Pagination = ({
 };
 
 Pagination.propTypes = {
-  defaultCurrent: PropTypes.number,
+  page: PropTypes.number,
   pageSize: PropTypes.number,
   total: PropTypes.number.isRequired,
   onChange: PropTypes.func,
 };
 
 Pagination.defaultProps = {
-  defaultCurrent: 1,
+  page: 1,
   pageSize: 20,
   onChange: () => {},
 };

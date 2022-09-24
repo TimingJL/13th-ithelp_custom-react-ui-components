@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -69,7 +69,7 @@ const StyledItem = styled.div`
 const Pagination = ({
   themeColor,
   withEllipsis,
-  defaultCurrent,
+  page,
   pageSize,
   total,
   onChange,
@@ -77,31 +77,24 @@ const Pagination = ({
   const { makeColor } = useColor();
   const color = makeColor({ themeColor });
   const {
-    current,
     items,
     totalPage,
     handleClickNext,
     handleClickPrev,
   } = usePagination({
-    defaultCurrent,
+    page,
     pageSize,
     total,
     withEllipsis,
+    onChange,
   });
-
-  useEffect(() => {
-    onChange({
-      current, pageSize,
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, pageSize]);
 
   return (
     <StyledPagination>
       <ArrowButton
         role="presentation"
-        onClick={current === 1 ? null : handleClickPrev}
-        $isDisabled={current === 1}
+        onClick={page === 1 ? null : handleClickPrev}
+        $isDisabled={page === 1}
       >
         <ArrowLeftIcon />
       </ArrowButton>
@@ -128,8 +121,8 @@ const Pagination = ({
       }
       <ArrowButton
         role="presentation"
-        onClick={current === totalPage ? null : handleClickNext}
-        $isDisabled={current === totalPage}
+        onClick={page === totalPage ? null : handleClickNext}
+        $isDisabled={page === totalPage}
       >
         <ArrowRightIcon />
       </ArrowButton>
@@ -143,9 +136,9 @@ Pagination.propTypes = {
    */
   themeColor: PropTypes.oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
-   * 預設的當前頁面碼
+   * 當前頁數
   */
-  defaultCurrent: PropTypes.number,
+  page: PropTypes.number,
   /**
    * 每一頁資料筆數
   */
@@ -166,7 +159,7 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   themeColor: 'primary',
-  defaultCurrent: 1,
+  page: 1,
   pageSize: 20,
   withEllipsis: false,
   onChange: () => {},
