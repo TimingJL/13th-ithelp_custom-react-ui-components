@@ -89,7 +89,7 @@ const TemplateShowZero = (args) => {
       </VariantGroup>
       <Switch
         isChecked={showZero}
-        onChange={(value) => setShowZero(value)}
+        onChange={() => setShowZero((prev) => !prev)}
       />
     </SpaceBetween>
   );

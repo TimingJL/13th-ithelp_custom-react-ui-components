@@ -94,7 +94,8 @@ const TemplateSpinContainer = (args) => {
           label="是否正在載入中"
         >
           <Switch
-            onChange={setIsChecked}
+            isChecked={isChecked}
+            onChange={() => setIsChecked((prev) => !prev)}
           />
         </FormControl>
         <FormControl
@@ -103,7 +104,8 @@ const TemplateSpinContainer = (args) => {
           style={{ marginTop: 20 }}
         >
           <Switch
-            onChange={setUseCustomIndicator}
+            isChecked={useCustomIndicator}
+            onChange={() => setUseCustomIndicator((prev) => !prev)}
           />
         </FormControl>
       </div>
