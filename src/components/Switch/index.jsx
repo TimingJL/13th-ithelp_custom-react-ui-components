@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { useColor } from 'hooks/useColor';
@@ -71,7 +71,7 @@ const Switch = ({
   const switchWidth = thumbSize + labelWidth;
   const switchColor = makeColor({ themeColor, isDisabled: !isChecked });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const minLabelSize = thumbSize * 1.2;
     const currentLabelWidth = labelRef?.current?.clientWidth;
     if (currentLabelWidth) {

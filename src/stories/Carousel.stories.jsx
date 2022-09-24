@@ -45,21 +45,21 @@ const TemplateControls = (args) => {
           isChecked={hasControlArrow}
           checkedChildren="顯示切換鍵"
           unCheckedChildren="隱藏切換鍵"
-          onChange={(value) => setHasControlArrow(value)}
+          onChange={() => setHasControlArrow((prev) => !prev)}
         />
         <Switch
           style={{ marginTop: 20 }}
           isChecked={hasDots}
           checkedChildren="顯示指示點"
           unCheckedChildren="隱藏指示點"
-          onChange={(value) => setHasDots(value)}
+          onChange={() => setHasDots((prev) => !prev)}
         />
         <Switch
           style={{ marginTop: 20 }}
           isChecked={autoplay}
           checkedChildren="自動播放"
           unCheckedChildren="暫停播放"
-          onChange={(value) => setAutoplay(value)}
+          onChange={() => setAutoplay((prev) => !prev)}
         />
       </div>
     </SpaceBetween>

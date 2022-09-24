@@ -67,7 +67,7 @@ const TemplateShowArrow = (args) => {
         isChecked={showArrow}
         checkedChildren="有箭頭"
         unCheckedChildren="沒箭頭"
-        onChange={(value) => setShowArrow(value)}
+        onChange={() => setShowArrow((prev) => !prev)}
       />
     </SpaceBetween>
   );
