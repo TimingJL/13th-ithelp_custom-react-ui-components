@@ -1,36 +1,33 @@
-import { useState } from 'react';
-
 export const usePagination = ({
-  defaultCurrent = 1,
+  page = 1,
   pageSize = 20,
   total,
   withEllipsis,
+  onChange,
 }) => {
-  const [current, setCurrent] = useState(defaultCurrent);
   const totalPage = Math.ceil(total / pageSize);
   const items = [...Array(totalPage).keys()]
     .map((key) => key + 1)
-    .map((page) => ({
+    .map((item) => ({
       type: 'page',
-      isCurrent: current === page,
-      page,
-      onClick: () => setCurrent(page),
+      isCurrent: page === item,
+      page: item,
+      onClick: () => onChange(item),
     }));
   const markedItems = items
     .map((item) => {
-      const { page } = item;
       if (
-        page === totalPage
-      || page === 1
-      || page === current
-      || page === current + 1
-      || page === current - 1
+        item.page === totalPage
+      || item.page === 1
+      || item.page === page
+      || item.page === page + 1
+      || item.page === page - 1
       ) {
         return item;
       }
       return {
         ...item,
-        type: item.page > current ? 'end-ellipsis' : 'start-ellipsis',
+        type: item.page > page ? 'end-ellipsis' : 'start-ellipsis',
       };
     });
   const ellipsisItems = markedItems
@@ -45,18 +42,17 @@ export const usePagination = ({
     });
 
   const handleClickNext = () => {
-    const nextCurrent = current + 1 > totalPage ? totalPage : current + 1;
-    setCurrent(nextCurrent);
+    const nextCurrent = page + 1 > totalPage ? totalPage : page + 1;
+    onChange(nextCurrent);
   };
 
   const handleClickPrev = () => {
-    const prevCurrent = current - 1 < 1 ? 1 : current - 1;
-    setCurrent(prevCurrent);
+    const prevCurrent = page - 1 < 1 ? 1 : page - 1;
+    onChange(prevCurrent);
   };
 
   return {
     items: withEllipsis ? ellipsisItems : items,
-    current,
     totalPage,
     handleClickNext,
     handleClickPrev,
