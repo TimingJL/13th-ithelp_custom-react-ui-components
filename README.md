@@ -1,4 +1,4 @@
-# 30 天擁有一套自己手刻的 React UI 元件庫
+# 哎呀！不小心刻了一套 React UI 元件庫
 
 ## Installation
 
@@ -35,5 +35,7 @@ export default App;
 <https://timingjl.github.io/13th-ithelp_custom-react-ui-components/?path=/story/welcome-introduction--page>
 
 ## 2021 iThome 鐵人賽 - 鐵人檔案
+
+2021 iThome 鐵人賽，Modern Web 組佳作網路系列文章 ──《30 天擁有一套自己手刻的 React UI 元件庫》
 
 <https://ithelp.ithome.com.tw/users/20111490/ironman/3999>
