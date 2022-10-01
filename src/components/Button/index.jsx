@@ -103,7 +103,7 @@ const Button = ({
       $btnColor={btnColor}
       $variant={variant}
       disabled={isDisabled}
-      onClick={isDisabled ? null : onClick}
+      onClick={onClick}
       {...props}
     >
       <>
