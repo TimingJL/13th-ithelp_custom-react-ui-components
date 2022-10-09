@@ -63,7 +63,12 @@ const TextField = ({
     $isDisabled={isDisabled}
   >
     {prefix}
-    <Input type="text" {...props} className="text-field__input" disabled={isDisabled} />
+    <Input
+      type="text"
+      className="text-field__input"
+      disabled={isDisabled}
+      {...props}
+    />
     {suffix}
   </StyledTextField>
 );
