@@ -40,7 +40,7 @@ const SelectBox = styled.div`
     margin-left: 12px;
   }
 
-  ${(props) => (props.$isDisable ? selectBoxDisable : selectBoxEnable)}
+  ${(props) => (props.$isDisabled ? selectBoxDisable : selectBoxEnable)}
 `;
 
 const ArrowDown = styled.div`
@@ -75,7 +75,7 @@ const MenuItem = styled.div`
 */
 const Select = ({
   options, value, onSelect, placeholder,
-  isDisable, isLoading,
+  isDisabled, isLoading,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -84,7 +84,7 @@ const Select = ({
   return (
     <Dropdown
       isOpen={isOpen}
-      onClick={() => ((isDisable || isLoading) ? null : setIsOpen(true))}
+      onClick={() => ((isDisabled || isLoading) ? null : setIsOpen(true))}
       onClose={() => setIsOpen(false)}
       placement="bottom-left"
       overlay={(
@@ -107,7 +107,7 @@ const Select = ({
         </Menu>
       )}
     >
-      <SelectBox $isDisable={isDisable || isLoading}>
+      <SelectBox $isDisabled={isDisabled || isLoading}>
         <span>{foundOption.label || placeholder}</span>
         {
           isLoading ? (
@@ -142,7 +142,7 @@ Select.propTypes = {
   /**
    * 是否禁用下拉選單
    */
-  isDisable: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   /**
    * 資料是否正在載入中
    */
@@ -157,7 +157,7 @@ Select.defaultProps = {
   options: [],
   value: '',
   placeholder: '',
-  isDisable: false,
+  isDisabled: false,
   isLoading: false,
   onSelect: () => {},
 
