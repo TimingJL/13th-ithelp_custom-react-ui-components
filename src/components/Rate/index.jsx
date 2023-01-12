@@ -28,7 +28,9 @@ const CharacterWrapper = styled.div`
 
 const CharacterFirst = styled.div`
   position: absolute;
-  color: ${(props) => (props.$isActive ? props.$starColor : '#F0F0F0')};
+  color: ${(props) => (props.$isActive
+    ? props.$starColor
+    : '#F0F0F0')};
   width: 50%;
   overflow: hidden;
   cursor: pointer;
