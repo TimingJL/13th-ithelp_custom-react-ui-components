@@ -6,6 +6,8 @@
 
 - [天瓏網路書店](https://www.tenlong.com.tw/products/9786263332898)
 - [博客來](https://www.books.com.tw/products/0010938824)
+- [讀墨 (Readmoo)](https://readmoo.com/book/210256928000101)
+- [Pubu](https://www.pubu.com.tw/ebook/331188)
 
 **電子書：**
 
